@@ -1,0 +1,2 @@
+serviceClass: andatech.organizapp.client.GreetingService
+path: 11B34454E7879A3AE78F1D6DEA8E5993.gwt.rpc

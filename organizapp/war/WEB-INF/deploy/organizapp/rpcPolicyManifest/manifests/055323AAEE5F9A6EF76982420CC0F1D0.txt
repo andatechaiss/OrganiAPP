@@ -1,0 +1,2 @@
+serviceClass: andatech.organizapp.client.rpc.ClientRPC
+path: 22D53A05E011FE46FAEDEDD3E1EB03F7.gwt.rpc

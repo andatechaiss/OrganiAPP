@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>greetServlet</servlet-name>
+    <servlet-class>andatech.organizapp.server.GreetingServiceImpl</servlet-class>
+    
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>greetServlet</servlet-name>
+    <url-pattern>/organizapp/greet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- RPC -->
+  <servlet>
+    <servlet-name>CalendarRPC</servlet-name>
+    <servlet-class>andatech.organizapp.server.rpc.CalendarServerRPC</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CalendarRPC</servlet-name>
+    <url-pattern>/organizapp/calendar</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>TrelloRPC</servlet-name>
+    <servlet-class>andatech.organizapp.server.rpc.TrelloServerRPC</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>TrelloRPC</servlet-name>
+    <url-pattern>/organizapp/trello</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>MapRPC</servlet-name>
+    <servlet-class>andatech.organizapp.server.rpc.MapServerRPC</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MapRPC</servlet-name>
+    <url-pattern>/organizapp/map</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>DriveRPC</servlet-name>
+    <servlet-class>andatech.organizapp.server.rpc.DriveServerRPC</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>DriveRPC</servlet-name>
+    <url-pattern>/organizapp/drive</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- Nuestro servlet -->
+  <servlet>
+		<servlet-name>Resteasy</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>andatech.organizapp.api.OrganizApp</param-value>
+		</init-param>
+	</servlet>		
+	
+	<!-- Servlet mappings -->
+	<!-- All calls to /api/xxx will be sent to the resteasy servlet -->
+	<servlet-mapping>
+		<servlet-name>Resteasy</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Organizapp.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
