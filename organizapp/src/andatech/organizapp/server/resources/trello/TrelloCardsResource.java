@@ -15,7 +15,7 @@ public class TrelloCardsResource {
 	private static String uriAll = Trello.member + "cards";
 	private static String fin = "?key=[" + Trello.aplicationkey + "]";
 
-	public static Collection<Card> getAll() {
+	public static Collection<Card> getAllCards() {
 
 		ClientResource cr = null;
 		Card[] cards = null;
