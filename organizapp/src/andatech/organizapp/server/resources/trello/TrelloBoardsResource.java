@@ -13,7 +13,6 @@ import andatech.organizapp.shared.domain.trello.Boards;
 public class TrelloBoardsResource {
 
 	private static String uri = "https://api.trello.com/1/boards/me/";
-
 	private static String uriAll = Trello.member + "boards";
 	private static String fin = "?key=" + Trello.aplicationkey + "&token=";
 
@@ -26,7 +25,8 @@ public class TrelloBoardsResource {
 			cr = new ClientResource(uriAll + fin + token);
 			boards = cr.get(Boards[].class);
 		} catch (ResourceException re) {
-			System.err.println("Error al obtener los tableros");
+			System.out.println(token);
+			System.err.println("Error al obtener los tableros "+re.getStatus());
 		}
 		if (boards != null) {
 			return Arrays.asList(boards);
