@@ -7,21 +7,34 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
-@SuppressWarnings("serial")
-@Generated("org.jsonschema2pojo")
-public class Organizations implements Serializable{
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@Generated("org.jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Organizations implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -802339118646680069L;
+	/**
+	 * 
+	 */
 	private String id;
 	private String name;
 	private String displayName;
 	private String desc;
-	private Object descData;
+	//private Object descData;
 	private String url;
-	private Object website;
-	private Object logoHash;
-	private List<Object> products = new ArrayList<Object>();
-	private List<Object> powerUps = new ArrayList<Object>();
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	//private Object website;
+	//private Object logoHash;
+	//private List<Object> products = new ArrayList<Object>();
+	//private List<Object> powerUps = new ArrayList<Object>();
+	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+	public Organizations() {
+
+	}
 
 	/**
 	 * 
@@ -94,19 +107,19 @@ public class Organizations implements Serializable{
 	/**
 	 * 
 	 * @return The descData
-	 */
-	public Object getDescData() {
-		return descData;
-	}
-
-	/**
-	 * 
-	 * @param descData
-	 *            The descData
-	 */
-	public void setDescData(Object descData) {
-		this.descData = descData;
-	}
+//	 */
+//	public Object getDescData() {
+//		return descData;
+//	}
+//
+//	/**
+//	 * 
+//	 * @param descData
+//	 *            The descData
+//	 */
+//	public void setDescData(Object descData) {
+//		this.descData = descData;
+//	}
 
 	/**
 	 * 
@@ -127,78 +140,78 @@ public class Organizations implements Serializable{
 
 	/**
 	 * 
-	 * @return The website
+	 * @return The website //
 	 */
-	public Object getWebsite() {
-		return website;
-	}
-
-	/**
-	 * 
-	 * @param website
-	 *            The website
-	 */
-	public void setWebsite(Object website) {
-		this.website = website;
-	}
-
-	/**
-	 * 
-	 * @return The logoHash
-	 */
-	public Object getLogoHash() {
-		return logoHash;
-	}
-
-	/**
-	 * 
-	 * @param logoHash
-	 *            The logoHash
-	 */
-	public void setLogoHash(Object logoHash) {
-		this.logoHash = logoHash;
-	}
-
-	/**
-	 * 
-	 * @return The products
-	 */
-	public List<Object> getProducts() {
-		return products;
-	}
-
-	/**
-	 * 
-	 * @param products
-	 *            The products
-	 */
-	public void setProducts(List<Object> products) {
-		this.products = products;
-	}
-
-	/**
-	 * 
-	 * @return The powerUps
-	 */
-	public List<Object> getPowerUps() {
-		return powerUps;
-	}
-
-	/**
-	 * 
-	 * @param powerUps
-	 *            The powerUps
-	 */
-	public void setPowerUps(List<Object> powerUps) {
-		this.powerUps = powerUps;
-	}
-
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
-
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
+	// public Object getWebsite() {
+	// return website;
+	// }
+	//
+	// /**
+	// *
+	// * @param website
+	// * The website
+	// */
+	// public void setWebsite(Object website) {
+	// this.website = website;
+	// }
+	//
+	// /**
+	// *
+	// * @return The logoHash
+	// */
+	// public Object getLogoHash() {
+	// return logoHash;
+	// }
+	//
+	// /**
+	// *
+	// * @param logoHash
+	// * The logoHash
+	// */
+	// public void setLogoHash(Object logoHash) {
+	// this.logoHash = logoHash;
+	// }
+	//
+	// /**
+	// *
+	// * @return The products
+	// */
+	// public List<Object> getProducts() {
+	// return products;
+	// }
+	//
+	// /**
+	// *
+	// * @param products
+	// * The products
+	// */
+	// public void setProducts(List<Object> products) {
+	// this.products = products;
+	// }
+	//
+	// /**
+	// *
+	// * @return The powerUps
+	// */
+	// public List<Object> getPowerUps() {
+	// return powerUps;
+	// }
+	//
+	// /**
+	// *
+	// * @param powerUps
+	// * The powerUps
+	// */
+	// public void setPowerUps(List<Object> powerUps) {
+	// this.powerUps = powerUps;
+	// }
+	//
+	// public Map<String, Object> getAdditionalProperties() {
+	// return this.additionalProperties;
+	// }
+	//
+	// public void setAdditionalProperty(String name, Object value) {
+	// this.additionalProperties.put(name, value);
+	// }
 
 }

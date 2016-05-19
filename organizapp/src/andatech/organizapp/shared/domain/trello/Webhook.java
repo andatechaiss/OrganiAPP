@@ -5,94 +5,103 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
-@SuppressWarnings("serial")
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Generated("org.jsonschema2pojo")
-public class Webhook implements Serializable{
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Webhook implements Serializable {
 
-private Integer readyState;
-private String responseText;
-private Integer status;
-private String statusText;
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8022369089542826216L;
+	/**
+		 * 
+		 */
+	private Integer readyState;
+	private String responseText;
+	private Integer status;
+	private String statusText;
+//	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-/**
-* 
-* @return
-* The readyState
-*/
-public Integer getReadyState() {
-return readyState;
-}
+	public Webhook() {
 
-/**
-* 
-* @param readyState
-* The readyState
-*/
-public void setReadyState(Integer readyState) {
-this.readyState = readyState;
-}
+	}
 
-/**
-* 
-* @return
-* The responseText
-*/
-public String getResponseText() {
-return responseText;
-}
+	/**
+	 * 
+	 * @return The readyState
+	 */
+	public Integer getReadyState() {
+		return readyState;
+	}
 
-/**
-* 
-* @param responseText
-* The responseText
-*/
-public void setResponseText(String responseText) {
-this.responseText = responseText;
-}
+	/**
+	 * 
+	 * @param readyState
+	 *            The readyState
+	 */
+	public void setReadyState(Integer readyState) {
+		this.readyState = readyState;
+	}
 
-/**
-* 
-* @return
-* The status
-*/
-public Integer getStatus() {
-return status;
-}
+	/**
+	 * 
+	 * @return The responseText
+	 */
+	public String getResponseText() {
+		return responseText;
+	}
 
-/**
-* 
-* @param status
-* The status
-*/
-public void setStatus(Integer status) {
-this.status = status;
-}
+	/**
+	 * 
+	 * @param responseText
+	 *            The responseText
+	 */
+	public void setResponseText(String responseText) {
+		this.responseText = responseText;
+	}
 
-/**
-* 
-* @return
-* The statusText
-*/
-public String getStatusText() {
-return statusText;
-}
+	/**
+	 * 
+	 * @return The status
+	 */
+	public Integer getStatus() {
+		return status;
+	}
 
-/**
-* 
-* @param statusText
-* The statusText
-*/
-public void setStatusText(String statusText) {
-this.statusText = statusText;
-}
+	/**
+	 * 
+	 * @param status
+	 *            The status
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	/**
+	 * 
+	 * @return The statusText
+	 */
+	public String getStatusText() {
+		return statusText;
+	}
 
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	/**
+	 * 
+	 * @param statusText
+	 *            The statusText
+	 */
+	public void setStatusText(String statusText) {
+		this.statusText = statusText;
+	}
+
+	// public Map<String, Object> getAdditionalProperties() {
+	// return this.additionalProperties;
+	// }
+	//
+	// public void setAdditionalProperty(String name, Object value) {
+	// this.additionalProperties.put(name, value);
+	// }
 
 }

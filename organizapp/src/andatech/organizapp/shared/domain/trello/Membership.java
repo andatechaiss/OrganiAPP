@@ -5,113 +5,122 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
-@SuppressWarnings("serial")
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Generated("org.jsonschema2pojo")
-public class Membership implements Serializable{
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Membership implements Serializable {
 
-private String id;
-private String idMember;
-private String memberType;
-private Boolean unconfirmed;
-private Boolean deactivated;
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2094405567743538722L;
+	/**
+		 * 
+		 */
+	private String id;
+	private String idMember;
+	private String memberType;
+	private Boolean unconfirmed;
+	private Boolean deactivated;
+	// private Map<String, Object> additionalProperties = new HashMap<String,
+	// Object>();
 
-/**
-* 
-* @return
-* The id
-*/
-public String getId() {
-return id;
-}
+	public Membership() {
 
-/**
-* 
-* @param id
-* The id
-*/
-public void setId(String id) {
-this.id = id;
-}
+	}
 
-/**
-* 
-* @return
-* The idMember
-*/
-public String getIdMember() {
-return idMember;
-}
+	/**
+	 * 
+	 * @return The id
+	 */
+	public String getId() {
+		return id;
+	}
 
-/**
-* 
-* @param idMember
-* The idMember
-*/
-public void setIdMember(String idMember) {
-this.idMember = idMember;
-}
+	/**
+	 * 
+	 * @param id
+	 *            The id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-/**
-* 
-* @return
-* The memberType
-*/
-public String getMemberType() {
-return memberType;
-}
+	/**
+	 * 
+	 * @return The idMember
+	 */
+	public String getIdMember() {
+		return idMember;
+	}
 
-/**
-* 
-* @param memberType
-* The memberType
-*/
-public void setMemberType(String memberType) {
-this.memberType = memberType;
-}
+	/**
+	 * 
+	 * @param idMember
+	 *            The idMember
+	 */
+	public void setIdMember(String idMember) {
+		this.idMember = idMember;
+	}
 
-/**
-* 
-* @return
-* The unconfirmed
-*/
-public Boolean getUnconfirmed() {
-return unconfirmed;
-}
+	/**
+	 * 
+	 * @return The memberType
+	 */
+	public String getMemberType() {
+		return memberType;
+	}
 
-/**
-* 
-* @param unconfirmed
-* The unconfirmed
-*/
-public void setUnconfirmed(Boolean unconfirmed) {
-this.unconfirmed = unconfirmed;
-}
+	/**
+	 * 
+	 * @param memberType
+	 *            The memberType
+	 */
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
 
-/**
-* 
-* @return
-* The deactivated
-*/
-public Boolean getDeactivated() {
-return deactivated;
-}
+	/**
+	 * 
+	 * @return The unconfirmed
+	 */
+	public Boolean getUnconfirmed() {
+		return unconfirmed;
+	}
 
-/**
-* 
-* @param deactivated
-* The deactivated
-*/
-public void setDeactivated(Boolean deactivated) {
-this.deactivated = deactivated;
-}
+	/**
+	 * 
+	 * @param unconfirmed
+	 *            The unconfirmed
+	 */
+	public void setUnconfirmed(Boolean unconfirmed) {
+		this.unconfirmed = unconfirmed;
+	}
 
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	/**
+	 * 
+	 * @return The deactivated
+	 */
+	public Boolean getDeactivated() {
+		return deactivated;
+	}
 
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	/**
+	 * 
+	 * @param deactivated
+	 *            The deactivated
+	 */
+	public void setDeactivated(Boolean deactivated) {
+		this.deactivated = deactivated;
+	}
+
+//	public Map<String, Object> getAdditionalProperties() {
+//		return this.additionalProperties;
+//	}
+//
+//	public void setAdditionalProperty(String name, Object value) {
+//		this.additionalProperties.put(name, value);
+//	}
 
 }

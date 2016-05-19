@@ -5,132 +5,139 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
-@SuppressWarnings("serial")
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Generated("org.jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Lists implements Serializable {
 
-private String id;
-private String name;
-private Boolean closed;
-private String idBoard;
-private Double pos;
-private Boolean subscribed;
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2557501143913478417L;
+	/**
+		 * 
+		 */
+	private String id;
+	private String name;
+	private Boolean closed;
+	private String idBoard;
+	private Double pos;
+	private Boolean subscribed;
+	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-/**
-* 
-* @return
-* The id
-*/
-public String getId() {
-return id;
-}
+	public Lists() {
 
-/**
-* 
-* @param id
-* The id
-*/
-public void setId(String id) {
-this.id = id;
-}
+	}
 
-/**
-* 
-* @return
-* The name
-*/
-public String getName() {
-return name;
-}
+	/**
+	 * 
+	 * @return The id
+	 */
+	public String getId() {
+		return id;
+	}
 
-/**
-* 
-* @param name
-* The name
-*/
-public void setName(String name) {
-this.name = name;
-}
+	/**
+	 * 
+	 * @param id
+	 *            The id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-/**
-* 
-* @return
-* The closed
-*/
-public Boolean getClosed() {
-return closed;
-}
+	/**
+	 * 
+	 * @return The name
+	 */
+	public String getName() {
+		return name;
+	}
 
-/**
-* 
-* @param closed
-* The closed
-*/
-public void setClosed(Boolean closed) {
-this.closed = closed;
-}
+	/**
+	 * 
+	 * @param name
+	 *            The name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-/**
-* 
-* @return
-* The idBoard
-*/
-public String getIdBoard() {
-return idBoard;
-}
+	/**
+	 * 
+	 * @return The closed
+	 */
+	public Boolean getClosed() {
+		return closed;
+	}
 
-/**
-* 
-* @param idBoard
-* The idBoard
-*/
-public void setIdBoard(String idBoard) {
-this.idBoard = idBoard;
-}
+	/**
+	 * 
+	 * @param closed
+	 *            The closed
+	 */
+	public void setClosed(Boolean closed) {
+		this.closed = closed;
+	}
 
-/**
-* 
-* @return
-* The pos
-*/
-public Double getPos() {
-return pos;
-}
+	/**
+	 * 
+	 * @return The idBoard
+	 */
+	public String getIdBoard() {
+		return idBoard;
+	}
 
-/**
-* 
-* @param pos
-* The pos
-*/
-public void setPos(Double pos) {
-this.pos = pos;
-}
+	/**
+	 * 
+	 * @param idBoard
+	 *            The idBoard
+	 */
+	public void setIdBoard(String idBoard) {
+		this.idBoard = idBoard;
+	}
 
-/**
-* 
-* @return
-* The subscribed
-*/
-public Boolean getSubscribed() {
-return subscribed;
-}
+	/**
+	 * 
+	 * @return The pos
+	 */
+	public Double getPos() {
+		return pos;
+	}
 
-/**
-* 
-* @param subscribed
-* The subscribed
-*/
-public void setSubscribed(Boolean subscribed) {
-this.subscribed = subscribed;
-}
+	/**
+	 * 
+	 * @param pos
+	 *            The pos
+	 */
+	public void setPos(Double pos) {
+		this.pos = pos;
+	}
 
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	/**
+	 * 
+	 * @return The subscribed
+	 */
+	public Boolean getSubscribed() {
+		return subscribed;
+	}
 
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	/**
+	 * 
+	 * @param subscribed
+	 *            The subscribed
+	 */
+	public void setSubscribed(Boolean subscribed) {
+		this.subscribed = subscribed;
+	}
+
+//	public Map<String, Object> getAdditionalProperties() {
+//		return this.additionalProperties;
+//	}
+//
+//	public void setAdditionalProperty(String name, Object value) {
+//		this.additionalProperties.put(name, value);
+//	}
 
 }

@@ -5,208 +5,211 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
-@SuppressWarnings("serial")
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Generated("org.jsonschema2pojo")
-public class LabelNames implements Serializable{
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class LabelNames implements Serializable {
 
-private String green;
-private String yellow;
-private String orange;
-private String red;
-private String purple;
-private String blue;
-private String sky;
-private String lime;
-private String pink;
-private String black;
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3050960891540512042L;
+	/**
+		 * 
+		 */
+	private String green;
+	private String yellow;
+	private String orange;
+	private String red;
+	private String purple;
+	private String blue;
+	private String sky;
+	private String lime;
+	private String pink;
+	private String black;
+	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-/**
-* 
-* @return
-* The green
-*/
-public String getGreen() {
-return green;
-}
+	public LabelNames() {
 
-/**
-* 
-* @param green
-* The green
-*/
-public void setGreen(String green) {
-this.green = green;
-}
+	}
 
-/**
-* 
-* @return
-* The yellow
-*/
-public String getYellow() {
-return yellow;
-}
+	/**
+	 * 
+	 * @return The green
+	 */
+	public String getGreen() {
+		return green;
+	}
 
-/**
-* 
-* @param yellow
-* The yellow
-*/
-public void setYellow(String yellow) {
-this.yellow = yellow;
-}
+	/**
+	 * 
+	 * @param green
+	 *            The green
+	 */
+	public void setGreen(String green) {
+		this.green = green;
+	}
 
-/**
-* 
-* @return
-* The orange
-*/
-public String getOrange() {
-return orange;
-}
+	/**
+	 * 
+	 * @return The yellow
+	 */
+	public String getYellow() {
+		return yellow;
+	}
 
-/**
-* 
-* @param orange
-* The orange
-*/
-public void setOrange(String orange) {
-this.orange = orange;
-}
+	/**
+	 * 
+	 * @param yellow
+	 *            The yellow
+	 */
+	public void setYellow(String yellow) {
+		this.yellow = yellow;
+	}
 
-/**
-* 
-* @return
-* The red
-*/
-public String getRed() {
-return red;
-}
+	/**
+	 * 
+	 * @return The orange
+	 */
+	public String getOrange() {
+		return orange;
+	}
 
-/**
-* 
-* @param red
-* The red
-*/
-public void setRed(String red) {
-this.red = red;
-}
+	/**
+	 * 
+	 * @param orange
+	 *            The orange
+	 */
+	public void setOrange(String orange) {
+		this.orange = orange;
+	}
 
-/**
-* 
-* @return
-* The purple
-*/
-public String getPurple() {
-return purple;
-}
+	/**
+	 * 
+	 * @return The red
+	 */
+	public String getRed() {
+		return red;
+	}
 
-/**
-* 
-* @param purple
-* The purple
-*/
-public void setPurple(String purple) {
-this.purple = purple;
-}
+	/**
+	 * 
+	 * @param red
+	 *            The red
+	 */
+	public void setRed(String red) {
+		this.red = red;
+	}
 
-/**
-* 
-* @return
-* The blue
-*/
-public String getBlue() {
-return blue;
-}
+	/**
+	 * 
+	 * @return The purple
+	 */
+	public String getPurple() {
+		return purple;
+	}
 
-/**
-* 
-* @param blue
-* The blue
-*/
-public void setBlue(String blue) {
-this.blue = blue;
-}
+	/**
+	 * 
+	 * @param purple
+	 *            The purple
+	 */
+	public void setPurple(String purple) {
+		this.purple = purple;
+	}
 
-/**
-* 
-* @return
-* The sky
-*/
-public String getSky() {
-return sky;
-}
+	/**
+	 * 
+	 * @return The blue
+	 */
+	public String getBlue() {
+		return blue;
+	}
 
-/**
-* 
-* @param sky
-* The sky
-*/
-public void setSky(String sky) {
-this.sky = sky;
-}
+	/**
+	 * 
+	 * @param blue
+	 *            The blue
+	 */
+	public void setBlue(String blue) {
+		this.blue = blue;
+	}
 
-/**
-* 
-* @return
-* The lime
-*/
-public String getLime() {
-return lime;
-}
+	/**
+	 * 
+	 * @return The sky
+	 */
+	public String getSky() {
+		return sky;
+	}
 
-/**
-* 
-* @param lime
-* The lime
-*/
-public void setLime(String lime) {
-this.lime = lime;
-}
+	/**
+	 * 
+	 * @param sky
+	 *            The sky
+	 */
+	public void setSky(String sky) {
+		this.sky = sky;
+	}
 
-/**
-* 
-* @return
-* The pink
-*/
-public String getPink() {
-return pink;
-}
+	/**
+	 * 
+	 * @return The lime
+	 */
+	public String getLime() {
+		return lime;
+	}
 
-/**
-* 
-* @param pink
-* The pink
-*/
-public void setPink(String pink) {
-this.pink = pink;
-}
+	/**
+	 * 
+	 * @param lime
+	 *            The lime
+	 */
+	public void setLime(String lime) {
+		this.lime = lime;
+	}
 
-/**
-* 
-* @return
-* The black
-*/
-public String getBlack() {
-return black;
-}
+	/**
+	 * 
+	 * @return The pink
+	 */
+	public String getPink() {
+		return pink;
+	}
 
-/**
-* 
-* @param black
-* The black
-*/
-public void setBlack(String black) {
-this.black = black;
-}
+	/**
+	 * 
+	 * @param pink
+	 *            The pink
+	 */
+	public void setPink(String pink) {
+		this.pink = pink;
+	}
 
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	/**
+	 * 
+	 * @return The black
+	 */
+	public String getBlack() {
+		return black;
+	}
 
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	/**
+	 * 
+	 * @param black
+	 *            The black
+	 */
+	public void setBlack(String black) {
+		this.black = black;
+	}
+
+//	public Map<String, Object> getAdditionalProperties() {
+//		return this.additionalProperties;
+//	}
+//
+//	public void setAdditionalProperty(String name, Object value) {
+//		this.additionalProperties.put(name, value);
+//	}
 
 }

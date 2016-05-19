@@ -1,6 +1,6 @@
 package andatech.organizapp.client.rpc;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -10,29 +10,41 @@ import andatech.organizapp.shared.domain.trello.Card;
 import andatech.organizapp.shared.domain.trello.Lists;
 import andatech.organizapp.shared.domain.trello.Organizations;
 
-
 @RemoteServiceRelativePath("trello")
 public interface TrelloRPC extends RemoteService {
-	
-	Collection<Boards> getAllBoards();
-	Boards getBoard(String id);
-	void updateBoard(Boards b, String id);
-	void InsertBoard(Boards b);
-	void DeleteBoard(Boards b, String id, String username);
-	
-	Collection<Card> getAllCards();
-	Card getCard(String id);
-	void updateCard(Card b, String id);
-	void InsertCard(Card b);
-	void DeleteCard(Card b, String id);
-	
-	Lists getList(String id);
-	void updateList(Lists l, String id);
-	void insertList(Lists l);
-	
-	Organizations getOrganization(String id);
-	void updateOrganization(Organizations b, String id);
-	void InsertOrganization(Organizations b);
-	void DeleteOrganization(Organizations b, String id);
-	
+
+	List<Boards> getAllBoards(String token);
+
+	Boards getBoard(String id, String token);
+
+	void updateBoard(Boards b, String id, String token);
+
+	void InsertBoard(Boards b, String token);
+
+	void DeleteBoard(Boards b, String id, String username, String token);
+
+	List<Card> getAllCards(String token);
+
+	Card getCard(String id, String token);
+
+	void updateCard(Card b, String id, String token);
+
+	void InsertCard(Card b, String token);
+
+	void DeleteCard(Card b, String id, String token);
+
+	Lists getList(String id, String token);
+
+	void updateList(Lists l, String id, String token);
+
+	void insertList(Lists l, String token);
+
+	Organizations getOrganization(String id, String token);
+
+	void updateOrganization(Organizations b, String id, String token);
+
+	void InsertOrganization(Organizations b, String token);
+
+	void DeleteOrganization(Organizations b, String id, String token);
+
 }
