@@ -1,8 +1,7 @@
 package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -22,7 +21,6 @@ public class Webhook implements Serializable {
 	private String responseText;
 	private Integer status;
 	private String statusText;
-//	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	public Webhook() {
 
@@ -95,13 +93,5 @@ public class Webhook implements Serializable {
 	public void setStatusText(String statusText) {
 		this.statusText = statusText;
 	}
-
-	// public Map<String, Object> getAdditionalProperties() {
-	// return this.additionalProperties;
-	// }
-	//
-	// public void setAdditionalProperty(String name, Object value) {
-	// this.additionalProperties.put(name, value);
-	// }
 
 }

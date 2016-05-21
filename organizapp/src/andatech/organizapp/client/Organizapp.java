@@ -1,21 +1,12 @@
 package andatech.organizapp.client;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-
-import andatech.organizapp.client.rpc.TrelloRPC;
-import andatech.organizapp.client.rpc.TrelloRPCAsync;
-import andatech.organizapp.shared.domain.trello.Boards;
 
 public class Organizapp implements EntryPoint {
 
@@ -34,6 +25,7 @@ public class Organizapp implements EntryPoint {
 		// Window.alert("Manu no es nada gay");
 		// }
 		// });
+		final Label lb = new Label();
 
 		Button bt = new Button("Clica!");
 		bt.addClickHandler(new ClickHandler() {
@@ -42,16 +34,17 @@ public class Organizapp implements EntryPoint {
 			}
 		});
 		Button bt2 = new Button("Fueraaaa!");
-		bt.addClickHandler(new ClickHandler() {
+		bt2.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				Autenticacion.desAuthorize();
+				//Autenticacion.desAuthorize();
+				lb.setText(Autenticacion.trelloToken());
 			}
 		});
 		Button bt1 = new Button("Clica!");
 		Element elem = bt1.getElement();
 		elem.setAttribute("onclick", "trelloAuth();");
 
-		Button bt3 = new Button("Clica Trello!");
+		/*Button bt3 = new Button("Clica Trello!");
 		bt3.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				final TrelloRPCAsync contactService = GWT.create(TrelloRPC.class);
@@ -68,11 +61,12 @@ public class Organizapp implements EntryPoint {
 							}
 						});
 			}
-		});
+		});*/
 
 		RootPanel.get().add(bt);
 		RootPanel.get().add(bt1);
 		RootPanel.get().add(bt2);
-		RootPanel.get().add(bt3);
+		RootPanel.get().add(lb);
+		//RootPanel.get().add(bt3);
 	}
 }

@@ -1,8 +1,7 @@
 package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -26,8 +25,8 @@ public class Prefs implements Serializable {
 	private Boolean cardCovers;
 	private Boolean calendarFeedEnabled;
 	private String background;
-	//private Object backgroundImage;
-	//private Object backgroundImageScaled;
+	private Object backgroundImage;
+	private Object backgroundImageScaled;
 	private Boolean backgroundTile;
 	private String backgroundBrightness;
 	private String backgroundColor;
@@ -35,7 +34,6 @@ public class Prefs implements Serializable {
 	private Boolean canBeOrg;
 	private Boolean canBePrivate;
 	private Boolean canInvite;
-	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	public Prefs() {
 
@@ -181,35 +179,35 @@ public class Prefs implements Serializable {
 	 * 
 	 * @return The backgroundImage
 	 */
-//	public Object getBackgroundImage() {
-//		return backgroundImage;
-//	}
-//
-//	/**
-//	 * 
-//	 * @param backgroundImage
-//	 *            The backgroundImage
-//	 */
-//	public void setBackgroundImage(Object backgroundImage) {
-//		this.backgroundImage = backgroundImage;
-//	}
-//
-//	/**
-//	 * 
-//	 * @return The backgroundImageScaled
-//	 */
-//	public Object getBackgroundImageScaled() {
-//		return backgroundImageScaled;
-//	}
-//
-//	/**
-//	 * 
-//	 * @param backgroundImageScaled
-//	 *            The backgroundImageScaled
-//	 */
-//	public void setBackgroundImageScaled(Object backgroundImageScaled) {
-//		this.backgroundImageScaled = backgroundImageScaled;
-//	}
+	public Object getBackgroundImage() {
+		return backgroundImage;
+	}
+
+	/**
+	 * 
+	 * @param backgroundImage
+	 *            The backgroundImage
+	 */
+	public void setBackgroundImage(Object backgroundImage) {
+		this.backgroundImage = backgroundImage;
+	}
+
+	/**
+	 * 
+	 * @return The backgroundImageScaled
+	 */
+	public Object getBackgroundImageScaled() {
+		return backgroundImageScaled;
+	}
+
+	/**
+	 * 
+	 * @param backgroundImageScaled
+	 *            The backgroundImageScaled
+	 */
+	public void setBackgroundImageScaled(Object backgroundImageScaled) {
+		this.backgroundImageScaled = backgroundImageScaled;
+	}
 
 	/**
 	 * 
@@ -329,13 +327,5 @@ public class Prefs implements Serializable {
 	public void setCanInvite(Boolean canInvite) {
 		this.canInvite = canInvite;
 	}
-	//
-	// public Map<String, Object> getAdditionalProperties() {
-	// return this.additionalProperties;
-	// }
-	//
-	// public void setAdditionalProperty(String name, Object value) {
-	// this.additionalProperties.put(name, value);
-	// }
 
 }

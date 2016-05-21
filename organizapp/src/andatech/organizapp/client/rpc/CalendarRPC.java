@@ -9,7 +9,7 @@ import andatech.organizapp.shared.domain.calendar.Acl;
 import andatech.organizapp.shared.domain.calendar.CalendarEvent;
 import andatech.organizapp.shared.domain.calendar.Calendars;
 
-@RemoteServiceRelativePath("client")
+@RemoteServiceRelativePath("calendar")
 public interface CalendarRPC extends RemoteService{
 	
 	Acl getAcl(String calendarID, String ruleID);

@@ -1,8 +1,7 @@
 package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -28,7 +27,6 @@ public class LabelNames implements Serializable {
 	private String lime;
 	private String pink;
 	private String black;
-	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	public LabelNames() {
 
@@ -203,13 +201,5 @@ public class LabelNames implements Serializable {
 	public void setBlack(String black) {
 		this.black = black;
 	}
-
-//	public Map<String, Object> getAdditionalProperties() {
-//		return this.additionalProperties;
-//	}
-//
-//	public void setAdditionalProperty(String name, Object value) {
-//		this.additionalProperties.put(name, value);
-//	}
 
 }

@@ -1,8 +1,7 @@
 package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -23,8 +22,6 @@ public class Membership implements Serializable {
 	private String memberType;
 	private Boolean unconfirmed;
 	private Boolean deactivated;
-	// private Map<String, Object> additionalProperties = new HashMap<String,
-	// Object>();
 
 	public Membership() {
 
@@ -114,13 +111,5 @@ public class Membership implements Serializable {
 	public void setDeactivated(Boolean deactivated) {
 		this.deactivated = deactivated;
 	}
-
-//	public Map<String, Object> getAdditionalProperties() {
-//		return this.additionalProperties;
-//	}
-//
-//	public void setAdditionalProperty(String name, Object value) {
-//		this.additionalProperties.put(name, value);
-//	}
 
 }

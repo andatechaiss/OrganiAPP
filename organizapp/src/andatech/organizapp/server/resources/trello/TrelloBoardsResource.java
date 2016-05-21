@@ -1,7 +1,6 @@
 package andatech.organizapp.server.resources.trello;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.restlet.resource.ClientResource;

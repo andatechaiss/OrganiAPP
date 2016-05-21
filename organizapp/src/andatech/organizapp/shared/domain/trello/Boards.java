@@ -2,9 +2,7 @@ package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Generated;
 
@@ -25,15 +23,15 @@ public class Boards implements Serializable {
 
 	private String name;
 	private String desc;
-	// private Object descData;
+	private String descData;
 	private Boolean closed;
-	// private Object idOrganization;
-	// private Object pinned;
-	// private Object invitations;
+	private String idOrganization;
+	private String pinned;
+	private String invitations;
 	private String shortLink;
-	// private List<Object> powerUps = new ArrayList<Object>();
+	private List<String> powerUps = new ArrayList<String>();
 	private String dateLastActivity;
-	// private List<Object> idTags = new ArrayList<Object>();
+	private List<String> idTags = new ArrayList<String>();
 	private String id;
 	private Boolean invited;
 	private Boolean starred;
@@ -44,8 +42,6 @@ public class Boards implements Serializable {
 	private LabelNames labelNames;
 	private String dateLastView;
 	private String shortUrl;
-	// private Map<String, Object> additionalProperties = new HashMap<String,
-	// Object>();
 
 	/**
 	 * 
@@ -85,18 +81,18 @@ public class Boards implements Serializable {
 	 * 
 	 * @return The descData
 	 */
-	// public Object getDescData() {
-	// return descData;
-	// }
-	//
-	// /**
-	// *
-	// * @param descData
-	// * The descData
-	// */
-	// public void setDescData(Object descData) {
-	// this.descData = descData;
-	// }
+	 public String getDescData() {
+	 return descData;
+	 }
+	
+	 /**
+	 *
+	 * @param descData
+	 * The descData
+	 */
+	 public void setDescData(String descData) {
+	 this.descData = descData;
+	 }
 
 	/**
 	 * 
@@ -119,57 +115,57 @@ public class Boards implements Serializable {
 	 * 
 	 * @return The idOrganization
 	 */
-	// public Object getIdOrganization() {
-	// return idOrganization;
-	// }
-	//
-	// /**
-	// *
-	// * @param idOrganization
-	// * The idOrganization
-	// */
-	// public void setIdOrganization(Object idOrganization) {
-	// this.idOrganization = idOrganization;
-	// }
-	//
-	// /**
-	// *
-	// * @return The pinned
-	// */
-	// public Object getPinned() {
-	// return pinned;
-	// }
-	//
-	// /**
-	// *
-	// * @param pinned
-	// * The pinned
-	// */
-	// public void setPinned(Object pinned) {
-	// this.pinned = pinned;
-	// }
-	//
-	// /**
-	// *
-	// * @return The invitations
-	// */
-	// public Object getInvitations() {
-	// return invitations;
-	// }
-	//
-	// /**
-	// *
-	// * @param invitations
-	// * The invitations
-	// */
-	// public void setInvitations(Object invitations) {
-	// this.invitations = invitations;
-	// }
-	//
-	// /**
-	// *
-	// * @return The shortLink
-	// */
+	 public String getIdOrganization() {
+	 return idOrganization;
+	 }
+	
+	 /**
+	 *
+	 * @param idOrganization
+	 * The idOrganization
+	 */
+	 public void setIdOrganization(String idOrganization) {
+	 this.idOrganization = idOrganization;
+	 }
+	
+	 /**
+	 *
+	 * @return The pinned
+	 */
+	 public String getPinned() {
+	 return pinned;
+	 }
+	
+	 /**
+	 *
+	 * @param pinned
+	 * The pinned
+	 */
+	 public void setPinned(String pinned) {
+	 this.pinned = pinned;
+	 }
+	
+	 /**
+	 *
+	 * @return The invitations
+	 */
+	 public String getInvitations() {
+	 return invitations;
+	 }
+	
+	 /**
+	 *
+	 * @param invitations
+	 * The invitations
+	 */
+	 public void setInvitations(String invitations) {
+	 this.invitations = invitations;
+	 }
+	
+	 /**
+	 *
+	 * @return The shortLink
+	 */
 	public String getShortLink() {
 		return shortLink;
 	}
@@ -187,18 +183,18 @@ public class Boards implements Serializable {
 	 * 
 	 * @return The powerUps
 	 */
-	// public List<Object> getPowerUps() {
-	// return powerUps;
-	// }
-	//
-	// /**
-	// *
-	// * @param powerUps
-	// * The powerUps
-	// */
-	// public void setPowerUps(List<Object> powerUps) {
-	// this.powerUps = powerUps;
-	// }
+	 public List<String> getPowerUps() {
+	 return powerUps;
+	 }
+	
+	 /**
+	 *
+	 * @param powerUps
+	 * The powerUps
+	 */
+	 public void setPowerUps(List<String> powerUps) {
+	 this.powerUps = powerUps;
+	 }
 
 	/**
 	 * 
@@ -221,18 +217,18 @@ public class Boards implements Serializable {
 	 * 
 	 * @return The idTags //
 	 */
-	// public List<Object> getIdTags() {
-	// return idTags;
-	// }
-	//
-	// /**
-	// *
-	// * @param idTags
-	// * The idTags
-	// */
-	// public void setIdTags(List<Object> idTags) {
-	// this.idTags = idTags;
-	// }
+	 public List<String> getIdTags() {
+	 return idTags;
+	 }
+	
+	 /**
+	 *
+	 * @param idTags
+	 * The idTags
+	 */
+	 public void setIdTags(List<String> idTags) {
+	 this.idTags = idTags;
+	 }
 
 	/**
 	 * 
@@ -403,13 +399,5 @@ public class Boards implements Serializable {
 	public void setShortUrl(String shortUrl) {
 		this.shortUrl = shortUrl;
 	}
-	//
-	// public Map<String, Object> getAdditionalProperties() {
-	// return this.additionalProperties;
-	// }
-	//
-	// public void setAdditionalProperty(String name, Object value) {
-	// this.additionalProperties.put(name, value);
-	// }
 
 }

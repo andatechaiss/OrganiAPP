@@ -2,9 +2,8 @@ package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -24,13 +23,12 @@ public class Organizations implements Serializable {
 	private String name;
 	private String displayName;
 	private String desc;
-	//private Object descData;
+	private String descData;
 	private String url;
-	//private Object website;
-	//private Object logoHash;
-	//private List<Object> products = new ArrayList<Object>();
-	//private List<Object> powerUps = new ArrayList<Object>();
-	//private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	private String website;
+	private String logoHash;
+	private List<String> products = new ArrayList<String>();
+	private List<String> powerUps = new ArrayList<String>();
 
 	public Organizations() {
 
@@ -107,19 +105,19 @@ public class Organizations implements Serializable {
 	/**
 	 * 
 	 * @return The descData
-//	 */
-//	public Object getDescData() {
-//		return descData;
-//	}
-//
-//	/**
-//	 * 
-//	 * @param descData
-//	 *            The descData
-//	 */
-//	public void setDescData(Object descData) {
-//		this.descData = descData;
-//	}
+	 */
+	public String getDescData() {
+		return descData;
+	}
+
+	/**
+	 * 
+	 * @param descData
+	 *            The descData
+	 */
+	public void setDescData(String descData) {
+		this.descData = descData;
+	}
 
 	/**
 	 * 
@@ -142,76 +140,68 @@ public class Organizations implements Serializable {
 	 * 
 	 * @return The website //
 	 */
-	// public Object getWebsite() {
-	// return website;
-	// }
-	//
-	// /**
-	// *
-	// * @param website
-	// * The website
-	// */
-	// public void setWebsite(Object website) {
-	// this.website = website;
-	// }
-	//
-	// /**
-	// *
-	// * @return The logoHash
-	// */
-	// public Object getLogoHash() {
-	// return logoHash;
-	// }
-	//
-	// /**
-	// *
-	// * @param logoHash
-	// * The logoHash
-	// */
-	// public void setLogoHash(Object logoHash) {
-	// this.logoHash = logoHash;
-	// }
-	//
-	// /**
-	// *
-	// * @return The products
-	// */
-	// public List<Object> getProducts() {
-	// return products;
-	// }
-	//
-	// /**
-	// *
-	// * @param products
-	// * The products
-	// */
-	// public void setProducts(List<Object> products) {
-	// this.products = products;
-	// }
-	//
-	// /**
-	// *
-	// * @return The powerUps
-	// */
-	// public List<Object> getPowerUps() {
-	// return powerUps;
-	// }
-	//
-	// /**
-	// *
-	// * @param powerUps
-	// * The powerUps
-	// */
-	// public void setPowerUps(List<Object> powerUps) {
-	// this.powerUps = powerUps;
-	// }
-	//
-	// public Map<String, Object> getAdditionalProperties() {
-	// return this.additionalProperties;
-	// }
-	//
-	// public void setAdditionalProperty(String name, Object value) {
-	// this.additionalProperties.put(name, value);
-	// }
+	 public String getWebsite() {
+	 return website;
+	 }
+	
+	 /**
+	 *
+	 * @param website
+	 * The website
+	 */
+	 public void setWebsite(String website) {
+	 this.website = website;
+	 }
+	
+	 /**
+	 *
+	 * @return The logoHash
+	 */
+	 public String getLogoHash() {
+	 return logoHash;
+	 }
+	
+	 /**
+	 *
+	 * @param logoHash
+	 * The logoHash
+	 */
+	 public void setLogoHash(String logoHash) {
+	 this.logoHash = logoHash;
+	 }
+	
+	 /**
+	 *
+	 * @return The products
+	 */
+	 public List<String> getProducts() {
+	 return products;
+	 }
+	
+	 /**
+	 *
+	 * @param products
+	 * The products
+	 */
+	 public void setProducts(List<String> products) {
+	 this.products = products;
+	 }
+	
+	 /**
+	 *
+	 * @return The powerUps
+	 */
+	 public List<String> getPowerUps() {
+	 return powerUps;
+	 }
+	
+	 /**
+	 *
+	 * @param powerUps
+	 * The powerUps
+	 */
+	 public void setPowerUps(List<String> powerUps) {
+	 this.powerUps = powerUps;
+	 }
 
 }

@@ -2,6 +2,7 @@ package andatech.organizapp.client;
 
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
+import com.google.gwt.user.client.DOM;
 
 import andatech.organizapp.shared.GoogleCommon;
 
@@ -31,6 +32,9 @@ public class Autenticacion
 	}
 	
 	
-	
+	public static String trelloToken()
+	{
+		return DOM.getElementById("trello_token").getAttribute("value");
+	}
 	
 }

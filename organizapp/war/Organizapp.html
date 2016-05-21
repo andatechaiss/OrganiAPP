@@ -28,6 +28,8 @@
 	<script type="text/javascript">
 		function trelloAuth()
 		{
+			var authenticationSuccess = function(){$("#trello_token").val(Trello.token());}
+		
 			Trello.authorize({
 	 			  "type": "popup",
 				  "name": "OrganizAPP",
@@ -35,10 +37,12 @@
 				    "read": true,
 				    "write": true },
 				  "expiration": "never",
-				  "success": "authenticationSuccess",
+				  "success": authenticationSuccess,
 				  "error": "authenticationFailure"
 				});
 		}
+		
+		
 	</script>
     
     <script type="text/javascript" language="javascript" src="organizapp/organizapp.nocache.js"></script>
@@ -59,20 +63,10 @@
         in order for this application to display correctly.
       </div>
     </noscript>
-
-    <h1>Web Application Starter Project</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+    
+    
+    <input type="hidden" value="none" id="trello_token" />
+    
+    
   </body>
 </html>
