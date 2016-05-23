@@ -1,19 +1,19 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Acl {
-
-    private String kind;
+public class Acl implements Serializable{
+	
+	private String kind;
     private String etag;
     private String id;
     private Scope scope;
     private String role;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -104,13 +104,4 @@ public class Acl {
     public void setRole(String role) {
         this.role = role;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

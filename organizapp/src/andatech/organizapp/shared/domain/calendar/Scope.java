@@ -1,16 +1,16 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Scope {
+public class Scope implements Serializable{
 
     private String type;
     private String value;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -47,13 +47,4 @@ public class Scope {
     public void setValue(String value) {
         this.value = value;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

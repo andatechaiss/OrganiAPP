@@ -5,8 +5,9 @@ import com.google.gwt.core.client.Callback;
 
 import andatech.organizapp.shared.GoogleCommon;
 
-public class Auth 
+public class Autenticacion 
 {
+	public static String token_google = "none";
 	public static void authorize()
 	{
 		AuthRequest google = new AuthRequest(GoogleCommon.AUTH_URL, GoogleCommon.CLIENT_ID)
@@ -20,6 +21,7 @@ public class Auth
 
 			@Override
 			public void onSuccess(String result) {
+				token_google = result;
 			}
 		});
 	}

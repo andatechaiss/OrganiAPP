@@ -16,81 +16,81 @@ import andatech.organizapp.shared.domain.calendar.Calendars;
 public class CalendarServerRPC extends RemoteServiceServlet implements CalendarRPC{
 
 	@Override
-	public Acl getAcl(String calendarID, String ruleID) {
+	public Acl getAcl(String token, String calendarID, String ruleID) {
 		
-		return AclResource.getAcl(calendarID, ruleID);
+		return AclResource.getAcl(token, calendarID, ruleID);
 	}
 
 	@Override
-	public boolean addAcl(String calendarID, Acl acl) {
+	public boolean addAcl(String token, String calendarID, Acl acl) {
 		
-		return AclResource.addAcl(calendarID, acl);
+		return AclResource.addAcl(token, calendarID, acl);
 	}
 
 	@Override
-	public boolean updateAcl(String calendarID, Acl acl) {
+	public boolean updateAcl(String token, String calendarID, Acl acl) {
 		
-		return AclResource.updateAcl(calendarID, acl);
+		return AclResource.updateAcl(token, calendarID, acl);
 	}
 
 	@Override
-	public boolean deleteAcl(String calendarID, String ruleID) {
+	public boolean deleteAcl(String token, String calendarID, String ruleID) {
 		
-		return AclResource.deleteAcl(calendarID, ruleID);
+		return AclResource.deleteAcl(token, calendarID, ruleID);
 	}
 
 	@Override
-	public Calendars getCalendar(String calendarID) {
+	public Calendars getCalendar(String token, String calendarID) {
 		
-		return CalendarsResource.getCalendar(calendarID);
+		return CalendarsResource.getCalendar(token, calendarID);
 	}
 
 	@Override
-	public boolean addCalendar(Calendars calendar) {
+	public boolean addCalendar(String token, Calendars calendar) {
 		
-		return CalendarsResource.addCalendar(calendar);
+		return CalendarsResource.addCalendar(token, calendar);
 	}
 
 	@Override
-	public boolean updateCalendar(Calendars calendar) {
+	public boolean updateCalendar(String token, Calendars calendar) {
 		
-		return CalendarsResource.updateCalendar(calendar);
+		return CalendarsResource.updateCalendar(token, calendar);
 	}
 
 	@Override
-	public boolean deleteCalendar(String calendarID) {
+	public boolean deleteCalendar(String token, String calendarID) {
 		
-		return CalendarsResource.deleteCalendar(calendarID);
+		return CalendarsResource.deleteCalendar(token, calendarID);
 	}
 
 	@Override
-	public CalendarEvent getEvent(String calendarID, String eventID) {
+	public CalendarEvent getEvent(String token, String calendarID, String eventID) {
 		
-		return EventResource.getEvent(calendarID, eventID);
+		return EventResource.getEvent(token, calendarID, eventID);
 	}
 
 	@Override
-	public Collection<CalendarEvent> getAll(String calendarID) {
+	public Collection<CalendarEvent> getAll(String token, String calendarID) {
 		
-		return EventResource.getAll(calendarID);
+		return EventResource.getAll(token, calendarID);
 	}
 
 	@Override
-	public boolean addCalendarEvent(String calendarID, CalendarEvent event) {
+	public boolean addCalendarEvent(String token, String calendarID, CalendarEvent event) {
 		
-		return EventResource.addCalendarEvent(calendarID, event);
+		return EventResource.addCalendarEvent(token, calendarID, event);
 	}
 
 	@Override
-	public boolean updateCalendarEvent(String calendarID, CalendarEvent event) {
+	public boolean updateCalendarEvent(String token, String calendarID, CalendarEvent event) {
 		
-		return EventResource.updateCalendarEvent(calendarID, event);
+		return EventResource.updateCalendarEvent(token, calendarID, event);
 	}
 
 	@Override
-	public boolean deleteCalendarEvent(String calendarID, String eventID) {
+	public boolean deleteCalendarEvent(String token, String calendarID, String eventID) {
 		
-		return EventResource.deleteCalendarEvent(calendarID, eventID);
+		return EventResource.deleteCalendarEvent(token, calendarID, eventID);
 	}
 
 	

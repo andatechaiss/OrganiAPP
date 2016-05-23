@@ -1,16 +1,16 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Override {
+public class Override implements Serializable{
 
     private String method;
     private Integer minutes;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -47,13 +47,4 @@ public class Override {
     public void setMinutes(Integer minutes) {
         this.minutes = minutes;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

@@ -1,12 +1,13 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class CalendarEvent {
+public class CalendarEvent implements Serializable{
 
     private String kind;
     private String etag;
@@ -23,7 +24,6 @@ public class CalendarEvent {
     private String iCalUID;
     private Integer sequence;
     private Reminders reminders;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -294,13 +294,4 @@ public class CalendarEvent {
     public void setReminders(Reminders reminders) {
         this.reminders = reminders;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

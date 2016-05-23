@@ -3,20 +3,23 @@ package andatech.organizapp.server.resources.calendar;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.GoogleCommon;
 import andatech.organizapp.shared.domain.calendar.Calendars;
 
 public class CalendarsResource {
 	
 	private static String uri = "https://www.googleapis.com/calendar/v3/calendars";
+	private static String fin = "/?key=" + GoogleCommon.CLIENT_ID + "&access_token=";
 	
 	//Devuelve un calendario
-	public static Calendars getCalendar(String calendarID){
+	public static Calendars getCalendar(String token, String calendarID){
 		
 		ClientResource cr = null;
 		Calendars calendar = null;
+		System.err.println(token);
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID);
+			cr = new ClientResource(uri + "/" + calendarID + fin + token);
 			calendar = cr.get(Calendars.class);
 			
 		} catch (ResourceException re) {
@@ -28,13 +31,13 @@ public class CalendarsResource {
 	}
 	
 	//Crea un calendario secundario
-	public static boolean addCalendar(Calendars calendar){
+	public static boolean addCalendar(String token, Calendars calendar){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri);
+			cr = new ClientResource(uri + fin + token);
 			cr.setEntityBuffering(true);
 			cr.post(calendar);
 			
@@ -48,13 +51,13 @@ public class CalendarsResource {
 	}
 	
 	//Actualiza un calendario
-	public static boolean updateCalendar(Calendars calendar){
+	public static boolean updateCalendar(String token, Calendars calendar){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendar.getId());
+			cr = new ClientResource(uri + "/" + calendar.getId() + fin + token);
 			cr.setEntityBuffering(true);
 			cr.put(calendar);
 			
@@ -68,13 +71,13 @@ public class CalendarsResource {
 	}
 	
 	//Eliminar un calendario secundario
-	public static boolean deleteCalendar(String calendarID){
+	public static boolean deleteCalendar(String token, String calendarID){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID);
+			cr = new ClientResource(uri + "/" + calendarID + fin + token);
 			cr.setEntityBuffering(true);
 			cr.delete();
 			

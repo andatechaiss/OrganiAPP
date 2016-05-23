@@ -1,18 +1,18 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Reminders {
+public class Reminders implements Serializable{
 
     private Boolean useDefault;
     private List<Override> overrides = new ArrayList<Override>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -49,13 +49,4 @@ public class Reminders {
     public void setOverrides(List<Override> overrides) {
         this.overrides = overrides;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

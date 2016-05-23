@@ -3,20 +3,23 @@ package andatech.organizapp.server.resources.calendar;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.GoogleCommon;
 import andatech.organizapp.shared.domain.calendar.Acl;
 
 public class AclResource {
 	
 	private static String uri = "https://www.googleapis.com/calendar/v3/calendars";
+	private static String fin = "/?key=" + GoogleCommon.CLIENT_ID + "&access_token=";
 	
 	//Obtiene un Acl
-	public static Acl getAcl(String calendarID, String ruleID){
+	public static Acl getAcl(String token, String calendarID, String ruleID){
 		
 		ClientResource cr = null;
 		Acl acl = null;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID);
+			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID
+					+ fin + token);
 			acl = cr.get(Acl.class);
 			
 		} catch (ResourceException re) {
@@ -28,13 +31,13 @@ public class AclResource {
 	}
 	
 	//Añade un acl
-	public static boolean addAcl(String calendarID, Acl acl){
+	public static boolean addAcl(String token, String calendarID, Acl acl){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl");
+			cr = new ClientResource(uri + "/" + calendarID + "/acl" + fin + token);
 			cr.setEntityBuffering(true);
 			cr.post(acl);
 			
@@ -48,13 +51,14 @@ public class AclResource {
 	}
 	
 	//Actualiza un acl
-	public static boolean updateAcl(String calendarID, Acl acl){
+	public static boolean updateAcl(String token, String calendarID, Acl acl){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + acl.getId());
+			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + acl.getId()
+					+ fin + token);
 			cr.setEntityBuffering(true);
 			cr.put(acl);
 			
@@ -68,13 +72,14 @@ public class AclResource {
 	}
 	
 	//Elimina un acl
-	public static boolean deleteAcl(String calendarID, String ruleID){
+	public static boolean deleteAcl(String token, String calendarID, String ruleID){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID);
+			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID
+					+ fin + token);
 			cr.setEntityBuffering(true);
 			cr.delete();
 			
