@@ -23,25 +23,14 @@ public class Boards implements Serializable {
 
 	private String name;
 	private String desc;
-	private String descData;
 	private Boolean closed;
-	private String idOrganization;
-	private String pinned;
-	private String invitations;
-	private String shortLink;
 	private List<String> powerUps = new ArrayList<String>();
 	private String dateLastActivity;
-	private List<String> idTags = new ArrayList<String>();
 	private String id;
-	private Boolean invited;
-	private Boolean starred;
-	private String url;
 	private Prefs prefs;
 	private List<Membership> memberships = new ArrayList<Membership>();
 	private Boolean subscribed;
-	private LabelNames labelNames;
 	private String dateLastView;
-	private String shortUrl;
 
 	/**
 	 * 
@@ -75,108 +64,6 @@ public class Boards implements Serializable {
 	 */
 	public void setDesc(String desc) {
 		this.desc = desc;
-	}
-
-	/**
-	 * 
-	 * @return The descData
-	 */
-	 public String getDescData() {
-	 return descData;
-	 }
-	
-	 /**
-	 *
-	 * @param descData
-	 * The descData
-	 */
-	 public void setDescData(String descData) {
-	 this.descData = descData;
-	 }
-
-	/**
-	 * 
-	 * @return The closed
-	 */
-	public Boolean getClosed() {
-		return closed;
-	}
-
-	/**
-	 * 
-	 * @param closed
-	 *            The closed
-	 */
-	public void setClosed(Boolean closed) {
-		this.closed = closed;
-	}
-
-	/**
-	 * 
-	 * @return The idOrganization
-	 */
-	 public String getIdOrganization() {
-	 return idOrganization;
-	 }
-	
-	 /**
-	 *
-	 * @param idOrganization
-	 * The idOrganization
-	 */
-	 public void setIdOrganization(String idOrganization) {
-	 this.idOrganization = idOrganization;
-	 }
-	
-	 /**
-	 *
-	 * @return The pinned
-	 */
-	 public String getPinned() {
-	 return pinned;
-	 }
-	
-	 /**
-	 *
-	 * @param pinned
-	 * The pinned
-	 */
-	 public void setPinned(String pinned) {
-	 this.pinned = pinned;
-	 }
-	
-	 /**
-	 *
-	 * @return The invitations
-	 */
-	 public String getInvitations() {
-	 return invitations;
-	 }
-	
-	 /**
-	 *
-	 * @param invitations
-	 * The invitations
-	 */
-	 public void setInvitations(String invitations) {
-	 this.invitations = invitations;
-	 }
-	
-	 /**
-	 *
-	 * @return The shortLink
-	 */
-	public String getShortLink() {
-		return shortLink;
-	}
-
-	/**
-	 * 
-	 * @param shortLink
-	 *            The shortLink
-	 */
-	public void setShortLink(String shortLink) {
-		this.shortLink = shortLink;
 	}
 
 	/**
@@ -215,23 +102,6 @@ public class Boards implements Serializable {
 
 	/**
 	 * 
-	 * @return The idTags //
-	 */
-	 public List<String> getIdTags() {
-	 return idTags;
-	 }
-	
-	 /**
-	 *
-	 * @param idTags
-	 * The idTags
-	 */
-	 public void setIdTags(List<String> idTags) {
-	 this.idTags = idTags;
-	 }
-
-	/**
-	 * 
 	 * @return The id
 	 */
 	public String getId() {
@@ -245,57 +115,6 @@ public class Boards implements Serializable {
 	 */
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	/**
-	 * 
-	 * @return The invited
-	 */
-	public Boolean getInvited() {
-		return invited;
-	}
-
-	/**
-	 * 
-	 * @param invited
-	 *            The invited
-	 */
-	public void setInvited(Boolean invited) {
-		this.invited = invited;
-	}
-
-	/**
-	 * 
-	 * @return The starred
-	 */
-	public Boolean getStarred() {
-		return starred;
-	}
-
-	/**
-	 * 
-	 * @param starred
-	 *            The starred
-	 */
-	public void setStarred(Boolean starred) {
-		this.starred = starred;
-	}
-
-	/**
-	 * 
-	 * @return The url
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * 
-	 * @param url
-	 *            The url
-	 */
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	/**
@@ -351,23 +170,6 @@ public class Boards implements Serializable {
 
 	/**
 	 * 
-	 * @return The labelNames
-	 */
-	public LabelNames getLabelNames() {
-		return labelNames;
-	}
-
-	/**
-	 * 
-	 * @param labelNames
-	 *            The labelNames
-	 */
-	public void setLabelNames(LabelNames labelNames) {
-		this.labelNames = labelNames;
-	}
-
-	/**
-	 * 
 	 * @return The dateLastView
 	 */
 	public String getDateLastView() {
@@ -382,22 +184,15 @@ public class Boards implements Serializable {
 	public void setDateLastView(String dateLastView) {
 		this.dateLastView = dateLastView;
 	}
-
-	/**
-	 * 
-	 * @return The shortUrl
-	 */
-	public String getShortUrl() {
-		return shortUrl;
+	
+	public Boolean getClosed() {
+		return closed;
 	}
 
-	/**
-	 * 
-	 * @param shortUrl
-	 *            The shortUrl
-	 */
-	public void setShortUrl(String shortUrl) {
-		this.shortUrl = shortUrl;
+	public void setClosed(Boolean closed) {
+		this.closed = closed;
 	}
+
+
 
 }

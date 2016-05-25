@@ -7,8 +7,10 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
+import andatech.organizapp.shared.domain.trello.LabelColor;
 import andatech.organizapp.shared.domain.trello.Lists;
 import andatech.organizapp.shared.domain.trello.Organizations;
+import andatech.organizapp.shared.domain.trello.TypeMember;
 
 @RemoteServiceRelativePath("trello")
 public interface TrelloRPC extends RemoteService {
@@ -17,25 +19,53 @@ public interface TrelloRPC extends RemoteService {
 
 	Boards getBoard(String id, String token);
 
-	void updateBoard(Boards b, String id, String token);
+	void updateBoard(Boards b, String token);
+	
+	void updateBoard(String prop, String value, String id, String token);
+	
+	void updateBoard(String prop, Boolean value, String id, String token);
 
-	void InsertBoard(Boards b, String token);
+	void insertBoard(Boards b, String token);
+	
+	void insertPowerUps(String board, String power, String token);
+	
+	void insertLabel(String board, String nombre, LabelColor color, String token);
+	
+	void insertMember(String board, String miembro, TypeMember type, String token);
+	
+	void deleteMember(String board, String miembro, String token);
 
-	void DeleteBoard(Boards b, String id, String username, String token);
-
-	List<Card> getAllCards(String token);
-
+	List<Card> getAllCard(String list, String token);
+	
 	Card getCard(String id, String token);
 
-	void updateCard(Card b, String id, String token);
+	void updateCard(Card b, String token);
+	
+	void updateCard(String prop, String value, String id, String token);
+	
+	void updateCard(String prop, Boolean value, String id, String token);
+	
+	void insertCard(Card b, String token);
 
-	void InsertCard(Card b, String token);
+	void asignarMiembro(String card, String member, String token);
+	
+	void votar(String card, String member, String token);
+	
+	void insertEtiqueta(String card, String label, String token);
+	
+	void deleteCard(String id, String token);
+	
+	void quitarEtiqueta(String card, String label, String token);
+	
+	void desasignaMiembro(String card, String member, String token);
+	
+	void quitarVoto(String card, String member, String token);
 
-	void DeleteCard(Card b, String id, String token);
-
+	List<Lists> getAllList(String board, String token);
+	
 	Lists getList(String id, String token);
 
-	void updateList(Lists l, String id, String token);
+	void updateList(Lists l, String token);
 
 	void insertList(Lists l, String token);
 

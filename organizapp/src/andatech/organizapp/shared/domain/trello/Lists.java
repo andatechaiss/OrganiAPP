@@ -21,8 +21,6 @@ public class Lists implements Serializable {
 	private String name;
 	private Boolean closed;
 	private String idBoard;
-	private Double pos;
-	private Boolean subscribed;
 
 	public Lists() {
 
@@ -96,38 +94,5 @@ public class Lists implements Serializable {
 		this.idBoard = idBoard;
 	}
 
-	/**
-	 * 
-	 * @return The pos
-	 */
-	public Double getPos() {
-		return pos;
-	}
-
-	/**
-	 * 
-	 * @param pos
-	 *            The pos
-	 */
-	public void setPos(Double pos) {
-		this.pos = pos;
-	}
-
-	/**
-	 * 
-	 * @return The subscribed
-	 */
-	public Boolean getSubscribed() {
-		return subscribed;
-	}
-
-	/**
-	 * 
-	 * @param subscribed
-	 *            The subscribed
-	 */
-	public void setSubscribed(Boolean subscribed) {
-		this.subscribed = subscribed;
-	}
 
 }

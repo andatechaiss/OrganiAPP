@@ -25,8 +25,8 @@ public class Prefs implements Serializable {
 	private Boolean cardCovers;
 	private Boolean calendarFeedEnabled;
 	private String background;
-	private Object backgroundImage;
-	private Object backgroundImageScaled;
+	private String backgroundImage;
+	private String backgroundImageScaled;
 	private Boolean backgroundTile;
 	private String backgroundBrightness;
 	private String backgroundColor;
@@ -179,7 +179,7 @@ public class Prefs implements Serializable {
 	 * 
 	 * @return The backgroundImage
 	 */
-	public Object getBackgroundImage() {
+	public String getBackgroundImage() {
 		return backgroundImage;
 	}
 
@@ -188,7 +188,7 @@ public class Prefs implements Serializable {
 	 * @param backgroundImage
 	 *            The backgroundImage
 	 */
-	public void setBackgroundImage(Object backgroundImage) {
+	public void setBackgroundImage(String backgroundImage) {
 		this.backgroundImage = backgroundImage;
 	}
 
@@ -196,7 +196,7 @@ public class Prefs implements Serializable {
 	 * 
 	 * @return The backgroundImageScaled
 	 */
-	public Object getBackgroundImageScaled() {
+	public String getBackgroundImageScaled() {
 		return backgroundImageScaled;
 	}
 
@@ -205,7 +205,7 @@ public class Prefs implements Serializable {
 	 * @param backgroundImageScaled
 	 *            The backgroundImageScaled
 	 */
-	public void setBackgroundImageScaled(Object backgroundImageScaled) {
+	public void setBackgroundImageScaled(String backgroundImageScaled) {
 		this.backgroundImageScaled = backgroundImageScaled;
 	}
 
