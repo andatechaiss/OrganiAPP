@@ -1,7 +1,9 @@
-package andatech.organizapp.client.resources;
+package andatech.organizapp.client.resources.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import andatech.organizapp.client.resources.Proyecto;
 
 public class UtilsConfig 
 {
@@ -32,14 +34,26 @@ public class UtilsConfig
 	
 	
 	//config proyecto
-	public static Map<String, String> getConfigProyecto(Proyecto p)
+	public static Map<String, String> setConfigProyecto(Proyecto p)
 	{
 		Map<String, String> res = new HashMap<String, String>();
-		res.put("hola", "si");
-		res.put("adios", "false");
-		res.put("puta", "pene");
-		res.put("maite", "escaqueada");
+		res.put("Proyecto", "organizapp");
 		
 		return res;
+	}
+	
+	public static boolean getConfigProyecto(Proyecto p, String config)
+	{
+		Map<String, String> c = getConfig(config);
+		
+		String res = c.get("Proyecto");
+		if(res == null || !res.equals("organizapp"))
+			return false;
+		
+		/*String res = c.get("prueba");
+		if(res != null)
+			p.setPrueba(new Object(res));*/
+		
+		return true;
 	}
 }

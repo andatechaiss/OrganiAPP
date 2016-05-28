@@ -23,7 +23,7 @@ public interface TrelloRPCAsync {
 
 	void updateBoard(String prop, Boolean value, String id, String token, AsyncCallback<Void> callback);
 
-	void insertBoard(Boards b, String token, AsyncCallback<Void> callback);
+	void insertBoard(Boards b, String token, AsyncCallback<String> callback);
 
 	void getCard(String id, String token, AsyncCallback<Card> callback);
 
@@ -33,7 +33,7 @@ public interface TrelloRPCAsync {
 
 	void updateList(Lists l, String token, AsyncCallback<Void> callback);
 
-	void insertList(Lists l, String token, AsyncCallback<Void> callback);
+	void insertList(Lists l, String token, AsyncCallback<String> callback);
 
 	void getOrganization(String id, String token, AsyncCallback<Organizations> callback);
 
@@ -43,7 +43,7 @@ public interface TrelloRPCAsync {
 
 	void DeleteOrganization(Organizations b, String id, String token, AsyncCallback<Void> callback);
 
-	void insertCard(Card b, String token, AsyncCallback<Void> callback);
+	void insertCard(Card b, String token, AsyncCallback<String> callback);
 
 	void updateCard(String prop, String value, String id, String token, AsyncCallback<Void> callback);
 
@@ -63,7 +63,7 @@ public interface TrelloRPCAsync {
 
 	void votar(String card, String member, String token, AsyncCallback<Void> callback);
 
-	void insertLabel(String board, String nombre, LabelColor color, String token, AsyncCallback<Void> callback);
+	void insertLabel(String board, String nombre, LabelColor color, String token, AsyncCallback<String> callback);
 
 	void insertMember(String board, String miembro, TypeMember type, String token, AsyncCallback<Void> callback);
 
@@ -73,6 +73,6 @@ public interface TrelloRPCAsync {
 
 	void getAllCard(String list, String token, AsyncCallback<List<Card>> callback);
 
-	void insertPowerUps(String board, String power, String token, AsyncCallback<Void> callback);
+	void insertPowerUps(String board, String power, String token, AsyncCallback<String> callback);
 
 }

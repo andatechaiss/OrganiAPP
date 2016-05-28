@@ -7,6 +7,7 @@ import java.util.List;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.Trello;
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Label;
@@ -94,41 +95,20 @@ public class TrelloBoardsResource {
 
 	}
 
-	public static void insertBoard(Boards b, String token) {
-		ClientResource cr = null;
-
-		try {
-			cr = new ClientResource(uri + fin + token);
-			cr.post(b);
-		} catch (ResourceException re) {
-			System.err.println("Error al insertar el tablero: " + re.getStatus());
-		}
+	public static String insertBoard(Boards b, String token) {
+		return MapperID.getID(uri + fin + token, b);
 	}
 	
-	public static void insertPowerUps(String board, String power, String token) {
-		ClientResource cr = null;
-
-		try {
-			cr = new ClientResource(uri + board + "/powerUps/" + fin + token);
-			cr.post(new ValueString(power));
-		} catch (ResourceException re) {
-			System.err.println("Error al insertar el powerUps: " + re.getStatus());
-		}
+	public static String insertPowerUps(String board, String power, String token) {
+		return MapperID.getID(uri + board + "/powerUps/" + fin + token, new ValueString(power));
 	}
 	
-	public static void insertLabel(String board, String nombre, LabelColor color, String token) {
-		ClientResource cr = null;
-		
+	public static String insertLabel(String board, String nombre, LabelColor color, String token) {
 		Label res = new Label();
 		res.setName(nombre);
 		res.setColor(color.toString().toLowerCase());
-
-		try {
-			cr = new ClientResource(uri + board + "/labels/" + fin + token);
-			cr.post(res);
-		} catch (ResourceException re) {
-			System.err.println("Error al insertar el eqtiqueta: " + re.getStatus());
-		}
+		
+		return MapperID.getID(uri + board + "/labels/" + fin + token, res);
 	}
 	
 	public static void insertMember(String board, String miembro, TypeMember type, String token) {

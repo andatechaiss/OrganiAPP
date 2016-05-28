@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import andatech.organizapp.client.resources.Proyecto;
-import andatech.organizapp.client.resources.UtilsConfig;
+import andatech.organizapp.client.resources.utils.UtilsConfig;
 import andatech.organizapp.shared.domain.trello.Boards;
 
 public class Organizapp implements EntryPoint {
@@ -75,12 +75,13 @@ public class Organizapp implements EntryPoint {
 					}
 				});*/
 				
-				p.setNombre("AAA");
-				p.setTrelloIdBoard("57445c301290fa15552b5962");
+				p.setNombre("BORRAR");
+				//p.setTrelloIdBoard("57445c301290fa15552b5962");
 				//p.deleteAllLists();
 				p.setConfig();
 				//p.sincronizar();
 				//Proyecto.crearProyectoExistente(p);
+				Proyecto.crearProyectoNuevo(p);
 			}
 		});
 		Button bt1 = new Button("Clica!");

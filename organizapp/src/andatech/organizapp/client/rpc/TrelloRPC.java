@@ -25,11 +25,11 @@ public interface TrelloRPC extends RemoteService {
 	
 	void updateBoard(String prop, Boolean value, String id, String token);
 
-	void insertBoard(Boards b, String token);
+	String insertBoard(Boards b, String token);
 	
-	void insertPowerUps(String board, String power, String token);
+	String insertPowerUps(String board, String power, String token);
 	
-	void insertLabel(String board, String nombre, LabelColor color, String token);
+	String insertLabel(String board, String nombre, LabelColor color, String token);
 	
 	void insertMember(String board, String miembro, TypeMember type, String token);
 	
@@ -45,7 +45,7 @@ public interface TrelloRPC extends RemoteService {
 	
 	void updateCard(String prop, Boolean value, String id, String token);
 	
-	void insertCard(Card b, String token);
+	String insertCard(Card b, String token);
 
 	void asignarMiembro(String card, String member, String token);
 	
@@ -67,7 +67,7 @@ public interface TrelloRPC extends RemoteService {
 
 	void updateList(Lists l, String token);
 
-	void insertList(Lists l, String token);
+	String insertList(Lists l, String token);
 
 	Organizations getOrganization(String id, String token);
 

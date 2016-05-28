@@ -6,9 +6,11 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Generated("org.jsonschema2pojo")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Card implements Serializable {
 
     /**

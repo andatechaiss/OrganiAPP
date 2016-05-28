@@ -6,6 +6,7 @@ import java.util.List;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.Trello;
 import andatech.organizapp.shared.domain.trello.Card;
 import andatech.organizapp.shared.domain.trello.ValueBoolean;
@@ -81,16 +82,8 @@ public class TrelloCardsResource {
 	}
 	
 
-	public static void insertCard(Card b, String token) {
-		ClientResource cr = null;
-
-		try {
-			cr = new ClientResource(uri + fin + token);
-			cr.post(b);
-		} catch (ResourceException re) {
-			System.err.println("Error al insertar la tarjeta: " + re.getStatus());
-			System.err.println(uri + fin + token);
-		}
+	public static String insertCard(Card b, String token) {
+		return MapperID.getID(uri + fin + token, b);
 	}
 	
 	public static void insertEtiqueta(String card, String label, String token) {

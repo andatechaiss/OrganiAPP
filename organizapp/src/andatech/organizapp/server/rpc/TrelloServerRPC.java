@@ -46,19 +46,19 @@ public class TrelloServerRPC extends RemoteServiceServlet implements TrelloRPC {
 	}
 
 	@Override
-	public void insertBoard(Boards b, String token) {
-		TrelloBoardsResource.insertBoard(b, token);
+	public String insertBoard(Boards b, String token) {
+		return TrelloBoardsResource.insertBoard(b, token);
 	}
 	
 
 	@Override
-	public void insertPowerUps(String board, String power, String token) {
-		TrelloBoardsResource.insertPowerUps(board, power, token);
+	public String insertPowerUps(String board, String power, String token) {
+		return TrelloBoardsResource.insertPowerUps(board, power, token);
 	}
 	
 	@Override
-	public void insertLabel(String board, String nombre, LabelColor color, String token){
-		TrelloBoardsResource.insertLabel(board, nombre, color, token);
+	public String insertLabel(String board, String nombre, LabelColor color, String token){
+		return TrelloBoardsResource.insertLabel(board, nombre, color, token);
 	}
 	
 	@Override
@@ -97,8 +97,8 @@ public class TrelloServerRPC extends RemoteServiceServlet implements TrelloRPC {
 	}
 
 	@Override
-	public void insertCard(Card b, String token) {
-		TrelloCardsResource.insertCard(b, token);
+	public String insertCard(Card b, String token) {
+		return TrelloCardsResource.insertCard(b, token);
 	}
 
 	@Override
@@ -152,8 +152,8 @@ public class TrelloServerRPC extends RemoteServiceServlet implements TrelloRPC {
 	}
 
 	@Override
-	public void insertList(Lists l, String token) {
-		TrelloListsResource.insertList(l, token);
+	public String insertList(Lists l, String token) {
+		return TrelloListsResource.insertList(l, token);
 	}
 
 	@Override

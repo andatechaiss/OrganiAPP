@@ -2,6 +2,9 @@ package andatech.organizapp.shared.domain.trello;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class TypeMember implements Serializable
 {
 	private static final long serialVersionUID = -8132430310078351758L;

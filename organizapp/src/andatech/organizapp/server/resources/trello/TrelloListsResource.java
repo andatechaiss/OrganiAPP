@@ -6,6 +6,7 @@ import java.util.List;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.Trello;
 import andatech.organizapp.shared.domain.trello.Lists;
 
@@ -57,16 +58,8 @@ public class TrelloListsResource {
 		}
 	}
 
-	public static void insertList(Lists l, String token) {
-
-		ClientResource cr = null;
-
-		try {
-			cr = new ClientResource(uri + fin + token);
-			cr.post(l);
-		} catch (ResourceException re) {
-			System.err.println("Error al modificar la lista");
-		}
+	public static String insertList(Lists l, String token) {
+		return MapperID.getID(uri + fin + token, l);
 	}
 
 }

@@ -1,6 +1,7 @@
 package andatech.organizapp.client.resources;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import andatech.organizapp.client.Autenticacion;
 import andatech.organizapp.client.CallerRPC;
-import andatech.organizapp.client.rpc.CallbackVoid;
+import andatech.organizapp.client.resources.utils.CallbackObject;
+import andatech.organizapp.client.resources.utils.CallbackVoid;
+import andatech.organizapp.client.resources.utils.UtilsConfig;
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
 import andatech.organizapp.shared.domain.trello.Lists;
@@ -22,12 +25,20 @@ public class Proyecto
 	
 	private String trelloIdBoard;
 	private String trelloIdConfig;
+	private String trelloIdConfigProject;
 	
 	protected List<Lista> listas;
-	//private termina o no
-	//private lista de eventos (teminen o no)
+	private List<Evento> eventos;
+	
+	private boolean validOrganizapp;
 	
 	//private presentacion: fondo, colores...
+	
+	
+
+	private static CallbackObject cobj = new CallbackObject(){
+		public void run(Object obj) {}
+	};
 	
 	
 	
@@ -39,6 +50,7 @@ public class Proyecto
 		trelloIdConfig = "";
 		listas = new LinkedList<Lista>();
 	}
+	
 	
 	
 
@@ -65,7 +77,37 @@ public class Proyecto
 	public void setTrelloIdBoard(String trello_id_board) {
 		this.trelloIdBoard = trello_id_board;
 	}
+	
+	public String getTrelloIdConfig() {
+		return trelloIdConfig;
+	}
+	
+	public void setTrelloIdConfig(String trelloIdConfig) {
+		this.trelloIdConfig = trelloIdConfig;
+	}
+	
+	public String getTrelloIdConfigProject() {
+		return trelloIdConfigProject;
+	}
 
+	public void setTrelloIdConfigProject(String trelloIdConfigProject) {
+		this.trelloIdConfigProject = trelloIdConfigProject;
+	}
+	
+	public boolean isValidOrganizapp() {
+		return validOrganizapp;
+	}
+	
+	public boolean isTermina() {
+		for(Evento e : eventos)
+			if(e.isTerminacion())
+				return true;
+		
+		return false;
+	}
+
+	
+	
 	
 	//listas
 	public void crearLista(final Lista lista)
@@ -118,23 +160,12 @@ public class Proyecto
 						res.setClosed(false);
 						res.setName("Configuracion");
 						
-						CallerRPC.trello.insertList(res, Autenticacion.trelloToken(), new AsyncCallback<Void>()
+						CallerRPC.trello.insertList(res, Autenticacion.trelloToken(), new AsyncCallback<String>()
 						{
 							public void onFailure(Throwable caught) {}
-							public void onSuccess(Void result) {
-								CallerRPC.trello.getAllList(proy.getTrelloIdBoard(), Autenticacion.trelloToken(), new AsyncCallback<List<Lists>>()
-								{
-									public void onFailure(Throwable caught) {}
-									public void onSuccess(List<Lists> result) {
-										String id = null;
-										for(Lists l : result)
-											if(l.getName().equals(lista.getNombre()) && !l.getClosed())
-												id = l.getId();
-												
-										lista.setIdListTrello(id);
-										lista.setConfig();
-									}
-								});
+							public void onSuccess(String result) {
+								lista.setIdListTrello(result);
+								lista.setConfig();
 							}
 						});
 					}
@@ -147,7 +178,7 @@ public class Proyecto
 	
 	
 	//Poyecto
-	public static void crearProyectoNuevo(final Proyecto p)
+	public static void crearProyectoNuevo(final Proyecto p, final CallbackObject cobj)
 	{
 		Prefs prefs = new Prefs();
 		prefs.setVoting("members");
@@ -161,26 +192,23 @@ public class Proyecto
 		board.setPrefs(prefs);
 		board.setPowerUps(powerups);
 		
-		CallerRPC.trello.insertBoard(board, Autenticacion.trelloToken(), new AsyncCallback<Void>()
+		CallerRPC.trello.insertBoard(board, Autenticacion.trelloToken(), new AsyncCallback<String>()
 		{
 			public void onFailure(Throwable caught) {}
-			public void onSuccess(Void result) {
-				CallerRPC.trello.getAllBoards(Autenticacion.trelloToken(), new AsyncCallback<List<Boards>>()
-				{
-					public void onFailure(Throwable caught) {}
-					public void onSuccess(List<Boards> result) {
-						for(Boards b : result)
-							if(b.getName().equals(board.getName()) && b.getDateLastActivity() == null)
-								p.setTrelloIdBoard(b.getId());
-						
-						p.setConfig();
-					}
-				});
+			public void onSuccess(String result) {
+				p.setTrelloIdBoard(result);
+				p.setConfig(cobj); 	//callback se manda a config
 			}
 		});
 	}
 	
-	public static void crearProyectoExistente(final Proyecto p)
+	public static void crearProyectoNuevo(final Proyecto p)
+	{
+		crearProyectoNuevo(p, cobj);
+	}
+	
+	
+	public static void crearProyectoExistente(final Proyecto p, final CallbackObject cobj)
 	{
 		Prefs prefs = new Prefs();
 		prefs.setVoting("members");
@@ -199,10 +227,16 @@ public class Proyecto
 		{
 			public void onFailure(Throwable caught) {}
 			public void onSuccess(Void result) {
-				p.setConfig();
+				p.setConfig(cobj); 	//callback se manda a config
 			}
 		});
 	}
+	
+	public static void crearProyectoExistente(final Proyecto p)
+	{
+		crearProyectoExistente(p, cobj);
+	}
+	
 	
 	public static void eliminarProyecto(Proyecto p)
 	{
@@ -254,7 +288,7 @@ public class Proyecto
 	
 	
 	//configuracion extra 
-	public void setConfig()
+	public void setConfig(final CallbackObject cobj)
 	{
 		final Proyecto proy = this;
 		
@@ -292,7 +326,7 @@ public class Proyecto
 						{
 							public void onFailure(Throwable caught) {}
 							public void onSuccess(Void result) {
-								setCardsConfig();
+								setCardsConfig(cobj);
 							}
 						});
 					}
@@ -304,23 +338,12 @@ public class Proyecto
 						res.setClosed(false);
 						res.setName("Configuracion");
 						
-						CallerRPC.trello.insertList(res, Autenticacion.trelloToken(), new AsyncCallback<Void>()
+						CallerRPC.trello.insertList(res, Autenticacion.trelloToken(), new AsyncCallback<String>()
 						{
 							public void onFailure(Throwable caught) {}
-							public void onSuccess(Void result) {
-								CallerRPC.trello.getAllList(proy.getTrelloIdBoard(), Autenticacion.trelloToken(), new AsyncCallback<List<Lists>>()
-								{
-									public void onFailure(Throwable caught) {}
-									public void onSuccess(List<Lists> result) {
-										String id = null;
-										for(Lists l : result)
-											if(l.getName().equals("Configuracion") && !l.getClosed())
-												id = l.getId();
-												
-										proy.trelloIdConfig = id;
-										proy.setCardsConfig();
-									}
-								});
+							public void onSuccess(String result) {
+								proy.trelloIdConfig = result;
+								proy.setCardsConfig(cobj);
 							}
 						});
 					}
@@ -328,42 +351,113 @@ public class Proyecto
 			});
 		}
 		else
-			proy.setCardsConfig();
-		
-		
+			proy.setCardsConfig(cobj);
 		
 	}
 	
-	private void setCardsConfig()
+	public void setConfig()
+	{
+		setConfig(cobj);
+	}
+	
+	
+	private void setCardsConfig(final CallbackObject cobj)
 	{
 		final Proyecto proy = this;
 		
-		CallerRPC.trello.getAllCard(trelloIdConfig, Autenticacion.trelloToken(), new AsyncCallback<List<Card>>()
+		//si no tenemos la carta de proyecto la obtenemos
+		if(this.getTrelloIdConfigProject().equals(""))
 		{
-			public void onFailure(Throwable caught) {}
-			public void onSuccess(List<Card> result) {
-				Card res = null;
-				for(Card c : result)
-					if(c.getName().equals("Proyecto"))
-						res = c;
+			CallerRPC.trello.getAllCard(trelloIdConfig, Autenticacion.trelloToken(), new AsyncCallback<List<Card>>()
+			{
+				public void onFailure(Throwable caught) {}
+				public void onSuccess(List<Card> result) {
+					Card res = null;
+					for(Card c : result)
+						if(c.getName().equals("Proyecto"))
+							res = c;
+							
+					Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+					if(res != null)	//si la carta existia
+					{
+						res.setDesc(UtilsConfig.setConfig(config));
+						CallerRPC.trello.updateCard(res, Autenticacion.trelloToken(), new CallbackVoid(cobj, null));	//termina la funcion
+					}
+					else	//sino existia
+					{
+						Card c = new Card();
+						c.setName("Proyecto");
+						c.setIdList(trelloIdConfig);
+						c.setDesc(UtilsConfig.setConfig(config));
 						
-				Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
-				if(res != null)
-				{
-					res.setDesc(UtilsConfig.setConfig(config));
-					CallerRPC.trello.updateCard(res, Autenticacion.trelloToken(), new CallbackVoid());
+						CallerRPC.trello.insertCard(c, Autenticacion.trelloToken(), new AsyncCallback<String>()
+						{
+							public void onFailure(Throwable caught) {}
+							public void onSuccess(String result) {
+								proy.setTrelloIdConfigProject(result);
+								cobj.run(null);	//termina la funcion
+							}
+						});
+					}
 				}
-				else
-				{
-					Card c = new Card();
-					c.setName("Proyecto");
-					c.setIdList(trelloIdConfig);
-					c.setDesc(UtilsConfig.setConfig(config));
+			});
+		}
+		else
+		{
+			Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+			
+			Card res = new Card();
+			res.setDesc(UtilsConfig.setConfig(config));
+			res.setId(getTrelloIdConfigProject());
+			
+			CallerRPC.trello.updateCard(res, Autenticacion.trelloToken(), new CallbackVoid(cobj, null));	//termina la funcion
+		}
+	}
+	
+	
+	public void getConfig()
+	{
+		final Proyecto proy = this;
+		final Map<String, String> map = new HashMap<String, String>();
+		
+		//si no tenemos la carta de proyecto la obtenemos
+		if(this.getTrelloIdConfigProject().equals(""))
+		{
+			CallerRPC.trello.getAllCard(trelloIdConfig, Autenticacion.trelloToken(), new AsyncCallback<List<Card>>()
+			{
+				public void onFailure(Throwable caught) {}
+				public void onSuccess(List<Card> result) {
+					Card res = null;
+					for(Card c : result)
+						if(c.getName().equals("Proyecto"))
+							res = c;
 					
-					CallerRPC.trello.insertCard(c, Autenticacion.trelloToken(), new CallbackVoid());
+					Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+					
+					if(res != null)	//si la carta existe
+					{
+						UtilsConfig.setConfigProyecto(proy)
+						for(Map.Entry<String, String> em : UtilsConfig.getConfig(res.getDesc()).entrySet())
+							map.put(em.getKey(), em.getValue());
+						
+						//termina la funcion
+					}
 				}
-			}
-		});
+			});
+		}
+		else
+		{
+			CallerRPC.trello.getCard(this.getTrelloIdConfigProject(), Autenticacion.trelloToken(), new AsyncCallback<Card>()	//obtenemos carta con su ID
+			{
+				public void onFailure(Throwable caught) {}
+				public void onSuccess(Card result) {
+					for(Map.Entry<String, String> em : UtilsConfig.getConfig(result.getDesc()).entrySet())
+						map.put(em.getKey(), em.getValue());
+					
+					//termina la funcion
+				}
+			});
+		}
 	}
 
 }
