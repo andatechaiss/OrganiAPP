@@ -1,6 +1,6 @@
 package andatech.organizapp.server.rpc;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -22,7 +22,7 @@ public class CalendarServerRPC extends RemoteServiceServlet implements CalendarR
 	}
 
 	@Override
-	public boolean addAcl(String token, String calendarID, Acl acl) {
+	public String addAcl(String token, String calendarID, Acl acl) {
 		
 		return AclResource.addAcl(token, calendarID, acl);
 	}
@@ -44,9 +44,15 @@ public class CalendarServerRPC extends RemoteServiceServlet implements CalendarR
 		
 		return CalendarsResource.getCalendar(token, calendarID);
 	}
+	
+	@Override
+	public List<Calendars> getAll(String token) {
+		
+		return CalendarsResource.getAll(token);
+	}
 
 	@Override
-	public boolean addCalendar(String token, Calendars calendar) {
+	public String addCalendar(String token, Calendars calendar) {
 		
 		return CalendarsResource.addCalendar(token, calendar);
 	}
@@ -70,13 +76,13 @@ public class CalendarServerRPC extends RemoteServiceServlet implements CalendarR
 	}
 
 	@Override
-	public Collection<CalendarEvent> getAll(String token, String calendarID) {
+	public List<CalendarEvent> getAll(String token, String calendarID) {
 		
 		return EventResource.getAll(token, calendarID);
 	}
 
 	@Override
-	public boolean addCalendarEvent(String token, String calendarID, CalendarEvent event) {
+	public String addCalendarEvent(String token, String calendarID, CalendarEvent event) {
 		
 		return EventResource.addCalendarEvent(token, calendarID, event);
 	}
@@ -92,7 +98,5 @@ public class CalendarServerRPC extends RemoteServiceServlet implements CalendarR
 		
 		return EventResource.deleteCalendarEvent(token, calendarID, eventID);
 	}
-
-	
 
 }

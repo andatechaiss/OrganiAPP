@@ -4,11 +4,12 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
 import andatech.organizapp.shared.GoogleCommon;
+import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.domain.calendar.Acl;
 
 public class AclResource {
 	
-	private static String uri = "https://www.googleapis.com/calendar/v3/calendars";
+	private static String uri = "https://www.googleapis.com/calendar/v3";
 	private static String fin = "/?key=" + GoogleCommon.CLIENT_ID + "&access_token=";
 	
 	//Obtiene un Acl
@@ -18,7 +19,7 @@ public class AclResource {
 		Acl acl = null;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/acl/" + ruleID
 					+ fin + token);
 			acl = cr.get(Acl.class);
 			
@@ -31,23 +32,9 @@ public class AclResource {
 	}
 	
 	//Añade un acl
-	public static boolean addAcl(String token, String calendarID, Acl acl){
+	public static String addAcl(String token, String calendarID, Acl acl){
 		
-		ClientResource cr = null;
-		boolean success = true;
-		
-		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl" + fin + token);
-			cr.setEntityBuffering(true);
-			cr.post(acl);
-			
-		} catch (ResourceException re) {
-			System.err.println("Error al añadir el acl " + acl.getId() + ": " 
-					+ cr.getResponse().getStatus());
-			success = false;
-		}
-		
-		return success;
+		return MapperID.getID(uri + "/calendars/" + calendarID + "/acl" + fin + token, acl);
 	}
 	
 	//Actualiza un acl
@@ -57,7 +44,7 @@ public class AclResource {
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + acl.getId()
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/acl/" + acl.getId()
 					+ fin + token);
 			cr.setEntityBuffering(true);
 			cr.put(acl);
@@ -78,7 +65,7 @@ public class AclResource {
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/acl/" + ruleID
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/acl/" + ruleID
 					+ fin + token);
 			cr.setEntityBuffering(true);
 			cr.delete();

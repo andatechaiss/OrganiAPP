@@ -5,11 +5,17 @@ import java.io.Serializable;
 
 import javax.annotation.Generated;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 @SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+
 public class Start implements Serializable{
 
-    private String dateTime;
+    private String date;
     private String timeZone;
 
     /**
@@ -17,8 +23,8 @@ public class Start implements Serializable{
      * @return
      *     The dateTime
      */
-    public String getDateTime() {
-        return dateTime;
+    public String getDate() {
+        return date;
     }
 
     /**
@@ -26,8 +32,8 @@ public class Start implements Serializable{
      * @param dateTime
      *     The dateTime
      */
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(String dateTime) {
+        this.date = dateTime;
     }
 
     /**

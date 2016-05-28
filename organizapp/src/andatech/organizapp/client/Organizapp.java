@@ -11,6 +11,9 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import andatech.organizapp.client.rpc.CalendarRPC;
 import andatech.organizapp.client.rpc.CalendarRPCAsync;
+import andatech.organizapp.shared.domain.calendar.CalendarEvent;
+import andatech.organizapp.shared.domain.calendar.End;
+import andatech.organizapp.shared.domain.calendar.Start;
 
 public class Organizapp implements EntryPoint {
 	
@@ -28,8 +31,19 @@ public class Organizapp implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				//Auth.desAuthorize();
 				final CalendarRPCAsync contactService = GWT.create(CalendarRPC.class);
-				contactService.deleteCalendarEvent(Autenticacion.token_google, "primary",
-						"qfjt88j9157ai20v6c8i56v6ec", new AsyncCallback<Boolean>(){
+				CalendarEvent ce = new CalendarEvent();
+				//ce.setId("qfjt88j9157ai20v6c8i56v6ec");
+				Start st = new Start();
+				st.setDate("2016-05-26");
+				//st.setTimeZone("Europe/Madrid");
+				End end = new End();
+				end.setDate("2016-05-26");
+				//end.setTimeZone("Europe/Madrid");
+				ce.setStart(st);
+				ce.setEnd(end);
+				contactService.addCalendarEvent(Autenticacion.token_google, "primary", ce
+						, new AsyncCallback<String>(){
+						
 
 					@Override
 					public void onFailure(Throwable e) {
@@ -38,8 +52,8 @@ public class Organizapp implements EntryPoint {
 					}
 
 					@Override
-					public void onSuccess(Boolean result) {
-						Window.alert(result.toString());
+					public void onSuccess(String result) {
+						Window.alert("bien! " + result.toString());
 						
 					}
 				});
