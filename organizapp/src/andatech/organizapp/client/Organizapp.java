@@ -11,13 +11,22 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
+import andatech.organizapp.client.gui.FlowController;
+import andatech.organizapp.client.rpc.DriveRPC;
+import andatech.organizapp.client.rpc.DriveRPCAsync;
 import andatech.organizapp.client.rpc.TrelloRPC;
 import andatech.organizapp.client.rpc.TrelloRPCAsync;
+import andatech.organizapp.shared.domain.drive.File;
 import andatech.organizapp.shared.domain.trello.Boards;
 
 public class Organizapp implements EntryPoint {
+	
+	 private VerticalPanel mainPanel = new VerticalPanel();
 
 	public void onModuleLoad() {
 
@@ -69,10 +78,62 @@ public class Organizapp implements EntryPoint {
 						});
 			}
 		});
+		
+		Button bt4 = new Button("Clica drive!");
+		bt4.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				final DriveRPCAsync contactService = GWT.create(DriveRPC.class);
+				contactService.getAllFiles("ya29.AHES6ZQEnuWPfNEH5A7TGwDqijvFLQXBlJcUKnPwHUpwPtbuX4EoMw",new AsyncCallback<List<File>>() {
+					
+							public void onFailure(Throwable e) {
+								Window.alert("Error loading contacts: " + e.getMessage());
 
-		RootPanel.get().add(bt);
-		RootPanel.get().add(bt1);
-		RootPanel.get().add(bt2);
-		RootPanel.get().add(bt3);
+							}
+
+							public void onSuccess(List<File> f) {
+								Window.alert(f.get(0).getName());
+
+							}
+						});
+			}
+		});
+		
+//		Button bt5 = new Button("GUI");
+//		bt5.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//				FlowController.go("MainView", null);
+//			}
+//		});
+		
+		FlexTable tareas = new FlexTable();
+		tareas.setBorderWidth(2);
+		tareas.setText(0, 0,"TAREAS PENDIENTES");
+		tareas.setText(0, 1,"TAREAS EN CURSO");
+		tareas.setText(0, 2,"TAREAS FINALIZADAS");
+		tareas.setWidth("510px");
+		
+		tareas.setText(1, 0,"Mercadona");
+		tareas.setText(2, 0,"Pizza hut");
+		
+		tareas.setText(1, 1,"Coche");
+		tareas.setText(2, 1,"Borracho");
+		
+		tareas.setText(1, 2,"Gas");
+		tareas.setText(2, 2,"Incienso");
+		
+		mainPanel.setSize("1350px", "760px");
+		mainPanel.setHorizontalAlignment(VerticalPanel.ALIGN_CENTER);
+		mainPanel.setVerticalAlignment(VerticalPanel.ALIGN_TOP);
+		mainPanel.add(tareas);
+		
+		
+		RootPanel.get().add(mainPanel);
+
+//		RootPanel.get().add(bt);
+//		RootPanel.get().add(bt1);
+//		RootPanel.get().add(bt2);
+//		RootPanel.get().add(bt3);
+//		RootPanel.get().add(bt4);
+//		RootPanel.get().add(bt5);
 	}
 }
