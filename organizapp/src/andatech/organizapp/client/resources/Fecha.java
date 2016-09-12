@@ -4,14 +4,14 @@ public class Fecha
 {
 	private int dia;
 	private int mes;
-	private int año;
+	private int anio;
 	
 	
 	public Fecha()
 	{
 		dia = 0;
 		mes = 0;
-		año = 0;
+		anio = 0;
 	}
 
 
@@ -33,11 +33,11 @@ public class Fecha
 		this.mes = mes;
 	}
 
-	public int getAño() {
-		return año;
+	public int getAnio() {
+		return anio;
 	}
 	
-	public void setAño(int año) {
-		this.año = año;
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 }

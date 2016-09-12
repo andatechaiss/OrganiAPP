@@ -377,7 +377,7 @@ public class Proyecto
 						if(c.getName().equals("Proyecto"))
 							res = c;
 							
-					Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+					Map<String, String> config = null;//UtilsConfig.getConfigProyecto(proy); //TODO pa q no de error
 					if(res != null)	//si la carta existia
 					{
 						res.setDesc(UtilsConfig.setConfig(config));
@@ -404,7 +404,7 @@ public class Proyecto
 		}
 		else
 		{
-			Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+			Map<String, String> config = null;//UtilsConfig.getConfigProyecto(proy);  //TODO pa q no de error
 			
 			Card res = new Card();
 			res.setDesc(UtilsConfig.setConfig(config));
@@ -415,49 +415,49 @@ public class Proyecto
 	}
 	
 	
-	public void getConfig()
-	{
-		final Proyecto proy = this;
-		final Map<String, String> map = new HashMap<String, String>();
-		
-		//si no tenemos la carta de proyecto la obtenemos
-		if(this.getTrelloIdConfigProject().equals(""))
-		{
-			CallerRPC.trello.getAllCard(trelloIdConfig, Autenticacion.trelloToken(), new AsyncCallback<List<Card>>()
-			{
-				public void onFailure(Throwable caught) {}
-				public void onSuccess(List<Card> result) {
-					Card res = null;
-					for(Card c : result)
-						if(c.getName().equals("Proyecto"))
-							res = c;
-					
-					Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
-					
-					if(res != null)	//si la carta existe
-					{
-						UtilsConfig.setConfigProyecto(proy)
-						for(Map.Entry<String, String> em : UtilsConfig.getConfig(res.getDesc()).entrySet())
-							map.put(em.getKey(), em.getValue());
-						
-						//termina la funcion
-					}
-				}
-			});
-		}
-		else
-		{
-			CallerRPC.trello.getCard(this.getTrelloIdConfigProject(), Autenticacion.trelloToken(), new AsyncCallback<Card>()	//obtenemos carta con su ID
-			{
-				public void onFailure(Throwable caught) {}
-				public void onSuccess(Card result) {
-					for(Map.Entry<String, String> em : UtilsConfig.getConfig(result.getDesc()).entrySet())
-						map.put(em.getKey(), em.getValue());
-					
-					//termina la funcion
-				}
-			});
-		}
-	}
+//	public void getConfig()
+//	{
+//		final Proyecto proy = this;
+//		final Map<String, String> map = new HashMap<String, String>();
+//		
+//		//si no tenemos la carta de proyecto la obtenemos
+//		if(this.getTrelloIdConfigProject().equals(""))
+//		{
+//			CallerRPC.trello.getAllCard(trelloIdConfig, Autenticacion.trelloToken(), new AsyncCallback<List<Card>>()
+//			{
+//				public void onFailure(Throwable caught) {}
+//				public void onSuccess(List<Card> result) {
+//					Card res = null;
+//					for(Card c : result)
+//						if(c.getName().equals("Proyecto"))
+//							res = c;
+//					
+//					Map<String, String> config = UtilsConfig.getConfigProyecto(proy);
+//					
+//					if(res != null)	//si la carta existe
+//					{
+//						UtilsConfig.setConfigProyecto(proy)
+//						for(Map.Entry<String, String> em : UtilsConfig.getConfig(res.getDesc()).entrySet())
+//							map.put(em.getKey(), em.getValue());
+//						
+//						//termina la funcion
+//					}
+//				}
+//			});
+//		}
+//		else
+//		{
+//			CallerRPC.trello.getCard(this.getTrelloIdConfigProject(), Autenticacion.trelloToken(), new AsyncCallback<Card>()	//obtenemos carta con su ID
+//			{
+//				public void onFailure(Throwable caught) {}
+//				public void onSuccess(Card result) {
+//					for(Map.Entry<String, String> em : UtilsConfig.getConfig(result.getDesc()).entrySet())
+//						map.put(em.getKey(), em.getValue());
+//					
+//					//termina la funcion
+//				}
+//			});
+//		}
+//	}
 
 }

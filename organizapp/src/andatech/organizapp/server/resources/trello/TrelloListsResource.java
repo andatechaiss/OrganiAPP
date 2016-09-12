@@ -52,7 +52,7 @@ public class TrelloListsResource {
 
 		try {
 			cr = new ClientResource(uri + l.getId() + fin + token);
-			cr.put(null);
+			cr.put(l);
 		} catch (ResourceException re) {
 			System.err.println("Error al modificar la lista");
 		}

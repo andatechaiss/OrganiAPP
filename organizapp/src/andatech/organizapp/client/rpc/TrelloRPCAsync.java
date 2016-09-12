@@ -6,10 +6,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
+import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.LabelColor;
 import andatech.organizapp.shared.domain.trello.Lists;
+import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.domain.trello.Organizations;
-import andatech.organizapp.shared.domain.trello.TypeMember;
 
 public interface TrelloRPCAsync {
 
@@ -65,7 +66,7 @@ public interface TrelloRPCAsync {
 
 	void insertLabel(String board, String nombre, LabelColor color, String token, AsyncCallback<String> callback);
 
-	void insertMember(String board, String miembro, TypeMember type, String token, AsyncCallback<Void> callback);
+	void insertMember(String board, Email miembro, String token, AsyncCallback<Void> callback);
 
 	void deleteMember(String board, String miembro, String token, AsyncCallback<Void> callback);
 

@@ -11,10 +11,10 @@ import andatech.organizapp.server.resources.trello.TrelloListsResource;
 import andatech.organizapp.server.resources.trello.TrelloOrganizationsResource;
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
+import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.LabelColor;
 import andatech.organizapp.shared.domain.trello.Lists;
 import andatech.organizapp.shared.domain.trello.Organizations;
-import andatech.organizapp.shared.domain.trello.TypeMember;
 
 @SuppressWarnings("serial")
 public class TrelloServerRPC extends RemoteServiceServlet implements TrelloRPC {
@@ -62,8 +62,8 @@ public class TrelloServerRPC extends RemoteServiceServlet implements TrelloRPC {
 	}
 	
 	@Override
-	public void insertMember(String board, String miembro, TypeMember type, String token){
-		TrelloBoardsResource.insertMember(board, miembro, type, token);
+	public void insertMember(String board, Email miembro, String token){
+		TrelloBoardsResource.insertMember(board, miembro, token);
 	}
 
 	@Override

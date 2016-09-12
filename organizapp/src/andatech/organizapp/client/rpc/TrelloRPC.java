@@ -7,10 +7,10 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
+import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.LabelColor;
 import andatech.organizapp.shared.domain.trello.Lists;
 import andatech.organizapp.shared.domain.trello.Organizations;
-import andatech.organizapp.shared.domain.trello.TypeMember;
 
 @RemoteServiceRelativePath("trello")
 public interface TrelloRPC extends RemoteService {
@@ -31,7 +31,7 @@ public interface TrelloRPC extends RemoteService {
 	
 	String insertLabel(String board, String nombre, LabelColor color, String token);
 	
-	void insertMember(String board, String miembro, TypeMember type, String token);
+	void insertMember(String board, Email miembro, String token);
 	
 	void deleteMember(String board, String miembro, String token);
 

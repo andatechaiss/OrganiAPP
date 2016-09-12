@@ -50,6 +50,16 @@
   </servlet-mapping>
   
   
+  <servlet>
+    <servlet-name>OrganizappRPC</servlet-name>
+    <servlet-class>andatech.organizapp.server.rpc.OrganizappServerRPC</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OrganizappRPC</servlet-name>
+    <url-pattern>/organizapp/oa</url-pattern>
+  </servlet-mapping>
+  
   <!-- Nuestro servlet -->
   <servlet>
 		<servlet-name>Resteasy</servlet-name>

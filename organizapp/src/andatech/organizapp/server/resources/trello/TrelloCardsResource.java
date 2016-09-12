@@ -1,5 +1,6 @@
 package andatech.organizapp.server.resources.trello;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.restlet.resource.ResourceException;
 import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.Trello;
 import andatech.organizapp.shared.domain.trello.Card;
+import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.domain.trello.ValueBoolean;
 import andatech.organizapp.shared.domain.trello.ValueString;
 
@@ -30,6 +32,29 @@ public class TrelloCardsResource {
 			System.err.println("Error al obtener la tarjetas: " + re.getStatus());
 		}
 		return card != null ? Arrays.asList(card) : null;
+	}
+	
+	public static List<Member> getMembersCards(String id, String token) {
+
+		ClientResource cr = null;
+		Member[] m = null;
+
+		try {
+			cr = new ClientResource(uri + id + "/members/" + fin + token);
+			m = cr.get(Member[].class);
+		} catch (ResourceException re) {
+			System.err.println("Error al obtener los miembros: " + re.getStatus());
+		}
+		
+		if (m != null) {
+			List<Member> res = new ArrayList<Member>();
+			for(Member l : Arrays.asList(m))
+					res.add(l);
+			
+			return res;
+		} else {
+			return null;
+		}
 	}
 
 	public static Card getCard(String id, String token) {

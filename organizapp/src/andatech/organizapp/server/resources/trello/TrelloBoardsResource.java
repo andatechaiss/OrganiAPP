@@ -10,9 +10,10 @@ import org.restlet.resource.ResourceException;
 import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.Trello;
 import andatech.organizapp.shared.domain.trello.Boards;
+import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.Label;
 import andatech.organizapp.shared.domain.trello.LabelColor;
-import andatech.organizapp.shared.domain.trello.TypeMember;
+import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.domain.trello.ValueBoolean;
 import andatech.organizapp.shared.domain.trello.ValueString;
 
@@ -26,13 +27,14 @@ public class TrelloBoardsResource {
 
 		ClientResource cr = null;
 		Boards[] boards = null;
-
+		
 		try {
 			cr = new ClientResource(uriAll + fin + token);
 			boards = cr.get(Boards[].class);
 		} catch (ResourceException re) {
 			System.err.println("Error al obtener los tableros: " + re.getStatus());
 		}
+		
 		if (boards != null) {
 			List<Boards> res = new ArrayList<Boards>();
 			for(Boards b : Arrays.asList(boards))
@@ -45,6 +47,52 @@ public class TrelloBoardsResource {
 		}
 	}
 
+	public static List<Label> getAllLabels(String id, String token) {
+
+		ClientResource cr = null;
+		Label labels = null;
+
+		try {
+			cr = new ClientResource(uri + "labels/" + fin + token);
+			labels = cr.get(Label.class);
+		} catch (ResourceException re) {
+			System.err.println("Error al obtener las etiquetas: " + re.getStatus());
+		}
+		
+		if (labels != null) {
+			List<Label> res = new ArrayList<Label>();
+			for(Label l : Arrays.asList(labels))
+					res.add(l);
+			
+			return res;
+		} else {
+			return null;
+		}
+	}
+	
+	public static List<Member> getMembersBoars(String id, String token) {
+
+		ClientResource cr = null;
+		Member[] m = null;
+
+		try {
+			cr = new ClientResource(uri + id + "/members/" + fin + token);
+			m = cr.get(Member[].class);
+		} catch (ResourceException re) {
+			System.err.println("Error al obtener las etiquetas: " + re.getStatus());
+		}
+		
+		if (m != null) {
+			List<Member> res = new ArrayList<Member>();
+			for(Member l : Arrays.asList(m))
+					res.add(l);
+			
+			return res;
+		} else {
+			return null;
+		}
+	}
+	
 	public static Boards getBoard(String id, String token) {
 
 		ClientResource cr = null;
@@ -111,12 +159,12 @@ public class TrelloBoardsResource {
 		return MapperID.getID(uri + board + "/labels/" + fin + token, res);
 	}
 	
-	public static void insertMember(String board, String miembro, TypeMember type, String token) {
+	public static void insertMember(String board, Email miembro, String token) {
 		ClientResource cr = null;
 
 		try {
-			cr = new ClientResource(uri + board + "/members/" + miembro + "/" + fin + token);
-			cr.put(type);
+			cr = new ClientResource(uri + board + "/members/" + fin + token);
+			cr.put(miembro);
 		} catch (ResourceException re) {
 			System.err.println("Error al insertar el eqtiqueta: " + re.getStatus());
 		}

@@ -1,19 +1,24 @@
 package andatech.organizapp.client;
 
+import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 
 import andatech.organizapp.shared.GoogleCommon;
 
 public class Autenticacion 
 {
-	public static void authorize()
+	private static String google_token = null;
+	
+	
+	public static void authorizeGoogle()
 	{
 		AuthRequest google = new AuthRequest(GoogleCommon.AUTH_URL, GoogleCommon.CLIENT_ID)
 								.withScopes(GoogleCommon.SCOPES);
 		
-		com.google.api.gwt.oauth2.client.Auth.get().login(google, new Callback<String, Throwable>() {
+		Auth.get().login(google, new Callback<String, Throwable>() {
 
 			@Override
 			public void onFailure(Throwable reason) {
@@ -21,20 +26,47 @@ public class Autenticacion
 
 			@Override
 			public void onSuccess(String result) {
+				google_token = result;
 			}
 		});
 	}
 	
+	public static void authorizeTrello()
+	{
+		try
+		{
+			trelloJNSI();
+		}
+		catch(Exception e)
+		{
+			Window.alert(e.getMessage());
+		}
+	}
+	
+	
 	
 	public static void desAuthorize()
 	{
-		com.google.api.gwt.oauth2.client.Auth.get().clearAllTokens();
+		Auth.get().clearAllTokens();
 	}
 	
 	
 	public static String trelloToken()
 	{
-		return DOM.getElementById("trello_token").getAttribute("value");
+		String res = DOM.getElementById("trello_token").getAttribute("value");
+		return res.equals("none") ? null : res;
 	}
+	
+	public static String googleToken()
+	{
+		return google_token;
+	}
+	
+	
+
+	//JSNI para usar la libreria nativa de autentificacion de trello
+	public static native void trelloJNSI() /*-{
+	  $wnd.trelloAuth();
+	}-*/;
 	
 }
