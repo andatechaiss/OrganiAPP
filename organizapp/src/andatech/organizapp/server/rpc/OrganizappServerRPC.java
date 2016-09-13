@@ -6,6 +6,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import andatech.organizapp.client.rpc.OrganizappRPC;
 import andatech.organizapp.server.ListCard;
+import andatech.organizapp.server.LocationCard;
 import andatech.organizapp.server.Project;
 import andatech.organizapp.server.TaskCard;
 import andatech.organizapp.shared.domain.trello.Email;
@@ -13,6 +14,7 @@ import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
+import andatech.organizapp.shared.resources.UbicacionResource;
 
 @SuppressWarnings("serial")
 public class OrganizappServerRPC  extends RemoteServiceServlet implements OrganizappRPC
@@ -29,13 +31,13 @@ public class OrganizappServerRPC  extends RemoteServiceServlet implements Organi
 	}
 
 	@Override
-	public ProyectoResource createProject(String trelloToken, String name, String desc) {
-		return Project.createProject(trelloToken, name, desc);
+	public ProyectoResource createProject(String googleToken, String trelloToken, String name, String desc) {
+		return Project.createProject(googleToken, trelloToken, name, desc);
 	}
 
 	@Override
-	public ProyectoResource createProject(String trelloToken, String id, String name, String desc) {
-		return Project.createProject(trelloToken, id, name, desc);
+	public ProyectoResource createProject(String googleToken, String trelloToken, String id, String name, String desc) {
+		return Project.createProject(googleToken, trelloToken, id, name, desc);
 	}
 
 	@Override
@@ -170,6 +172,32 @@ public class OrganizappServerRPC  extends RemoteServiceServlet implements Organi
 	@Override
 	public void deleteListCard(String trelloToken, String id) {
 		ListCard.deleteListCard(trelloToken, id);
+	}
+
+	@Override
+	public List<UbicacionResource> getAllLocationCard(String trelloToken, ProyectoResource p) {
+		return LocationCard.getAllLocationCard(trelloToken, p);
+	}
+
+	@Override
+	public List<UbicacionResource> getNearLocationCard(String trelloToken, ProyectoResource p, double lat, double lon,
+			double dist) {
+		return LocationCard.getNearLocationCard(trelloToken, p, lat, lon, dist);
+	}
+
+	@Override
+	public String insertLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u) {
+		return LocationCard.insertLocationCard(trelloToken, p, u);
+	}
+
+	@Override
+	public void updateLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u) {
+		LocationCard.updateLocationCard(trelloToken, p, u);
+	}
+
+	@Override
+	public void deleteLocationCard(String trelloToken, String locate) {
+		LocationCard.deleteLocationCard(trelloToken, locate);
 	}
 
 }

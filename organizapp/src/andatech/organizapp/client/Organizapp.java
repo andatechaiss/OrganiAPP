@@ -70,6 +70,7 @@ public class Organizapp implements EntryPoint {
 		bt.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Autenticacion.authorizeTrello();
+				Autenticacion.authorizeGoogle();
 				rpc.getProject(Autenticacion.trelloToken(), "57445c301290fa15552b5962", new AsyncCallback<ProyectoResource>(){
 					public void onFailure(Throwable caught) {
 					}
@@ -167,7 +168,7 @@ public class Organizapp implements EntryPoint {
 		Button btt4 = new Button("insert old");
 		btt4.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				rpc.createProject(Autenticacion.trelloToken(), "57445c301290fa15552b5962", "Antiguo", "Este es un proyecto de prueba", new AsyncCallback<ProyectoResource>(){
+				rpc.createProject(Autenticacion.googleToken(), Autenticacion.trelloToken(), "57445c301290fa15552b5962", "Antiguo", "Este es un proyecto de prueba", new AsyncCallback<ProyectoResource>(){
 					public void onFailure(Throwable caught) {
 					}
 					public void onSuccess(ProyectoResource result) {

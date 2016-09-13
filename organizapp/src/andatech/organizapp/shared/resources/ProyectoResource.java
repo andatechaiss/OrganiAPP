@@ -16,7 +16,7 @@ public class ProyectoResource implements Serializable
 	private String nombre;
 	private String descripcion;
 	
-	private String quitar; //TODO quitar este, es solo provisional
+	private String calendario;
 
 	private List<ListaTarjetasResource> listaTarjetas = new ArrayList<ListaTarjetasResource>();
 	private IdList idList = new IdList();
@@ -47,14 +47,6 @@ public class ProyectoResource implements Serializable
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public String getQuitar() {
-		return quitar;
-	}
-
-	public void setQuitar(String quitar) {
-		this.quitar = quitar;
-	}
 	
 	public IdList getIdList() {
 		return idList;
@@ -64,11 +56,12 @@ public class ProyectoResource implements Serializable
 		this.idList = idList;
 	}
 	
+	public String getCalendario() {
+		return calendario;
+	}
 
-	@Override
-	public String toString() {
-		return "ProyectoResource [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", quitar="
-				+ quitar + "]";
+	public void setCalendario(String calendario) {
+		this.calendario = calendario;
 	}
 	
 	

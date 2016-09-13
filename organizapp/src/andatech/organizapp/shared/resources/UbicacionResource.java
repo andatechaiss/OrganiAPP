@@ -1,6 +1,14 @@
 package andatech.organizapp.shared.resources;
 
-public class UbicacionResource implements TarjetasResource
+import java.io.Serializable;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@SuppressWarnings("serial")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class UbicacionResource implements TarjetasResource, Serializable
 {
 	private String id;
 	private double latitud;

@@ -9,12 +9,13 @@ import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
+import andatech.organizapp.shared.resources.UbicacionResource;
 
 public interface OrganizappRPCAsync {
 
-	void createProject(String trelloToken, String name, String desc, AsyncCallback<ProyectoResource> callback);
+	void createProject(String googleToken, String trelloToken, String name, String desc, AsyncCallback<ProyectoResource> callback);
 
-	void createProject(String trelloToken, String id, String name, String desc,
+	void createProject(String googleToken, String trelloToken, String id, String name, String desc,
 			AsyncCallback<ProyectoResource> callback);
 
 	void deleteProject(String trelloToken, ProyectoResource p, AsyncCallback<Void> callback);
@@ -77,5 +78,17 @@ public interface OrganizappRPCAsync {
 	void updateListCard(String trelloToken, ProyectoResource p, ListaTarjetasResource l, AsyncCallback<Void> callback);
 
 	void deleteListCard(String trelloToken, String id, AsyncCallback<Void> callback);
+
+	void getAllLocationCard(String trelloToken, ProyectoResource p, AsyncCallback<List<UbicacionResource>> callback);
+
+	void getNearLocationCard(String trelloToken, ProyectoResource p, double lat, double lon, double dist,
+			AsyncCallback<List<UbicacionResource>> callback);
+
+	void updateLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u, AsyncCallback<Void> callback);
+
+	void insertLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u,
+			AsyncCallback<String> callback);
+
+	void deleteLocationCard(String trelloToken, String locate, AsyncCallback<Void> callback);
 
 }

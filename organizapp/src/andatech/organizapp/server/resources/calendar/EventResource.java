@@ -1,25 +1,30 @@
 package andatech.organizapp.server.resources.calendar;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import andatech.organizapp.shared.GoogleCommon;
+import andatech.organizapp.shared.MapperID;
 import andatech.organizapp.shared.domain.calendar.CalendarEvent;
 
 public class EventResource {
 	
-	private static String uri = "https://www.googleapis.com/calendar/v3/calendars";
+private static String uri = "https://www.googleapis.com/calendar/v3";
+	
+	private static String fin = "/?key=" + GoogleCommon.CLIENT_ID + "&access_token=";
 
 	//Devuelve un evento
-	public static CalendarEvent getEvent(String calendarID, String eventID){
+	public static CalendarEvent getEvent(String token, String calendarID, String eventID){
 		
 		ClientResource cr = null;
 		CalendarEvent evento = null;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/events/" + eventID);
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/events/" + eventID 
+					+ fin + token);
 			evento = cr.get(CalendarEvent.class);
 		}
 		catch (ResourceException re){
@@ -31,12 +36,12 @@ public class EventResource {
 	}
 	
 	//Devuelve todos los eventos
-	public static Collection<CalendarEvent> getAll(String calendarID){
+	public static List<CalendarEvent> getAll(String token, String calendarID){
 		
 		ClientResource cr = null;
 		CalendarEvent[] eventos = null;
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/events");
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/events" + fin + token);
 			eventos = cr.get(CalendarEvent[].class);
 		}
 		catch (ResourceException re){
@@ -48,32 +53,22 @@ public class EventResource {
 	}
 	
 	//Crea un evento
-	public static boolean addCalendarEvent(String calendarID, CalendarEvent event){
+	public static String addCalendarEvent(String token, String calendarID, 
+			CalendarEvent event){
 		
-		ClientResource cr = null;
-		boolean success = true;
-		
-		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/events");
-			cr.setEntityBuffering(true);
-			cr.post(event);
-		} catch (ResourceException re) {
-			System.err.println("Error al añadir el evento " + event.getId()
-					+ cr.getResponse().getStatus());
-			success = false;
-		}
-		
-		return success;
+		return MapperID.getID(uri + "/calendars/" + calendarID + "/events" + fin + token, event);
 	}
 	
 	//Actualiza un evento
-	public static boolean updateCalendarEvent(String calendarID, CalendarEvent event){
+	public static boolean updateCalendarEvent(String token, String calendarID,
+			CalendarEvent event){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/events/" + event.getId());
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/events/" 
+					+ event.getId() + fin + token);
 			cr.setEntityBuffering(true);
 			cr.put(event);
 		} catch (ResourceException re) {
@@ -86,13 +81,15 @@ public class EventResource {
 	}
 	
 	//Elimina un evento
-	public static boolean deleteCalendarEvent(String calendarID, String eventID){
+	public static boolean deleteCalendarEvent(String token, String calendarID, 
+			String eventID){
 		
 		ClientResource cr = null;
 		boolean success = true;
 		
 		try{
-			cr = new ClientResource(uri + "/" + calendarID + "/events/" + eventID);
+			cr = new ClientResource(uri + "/calendars/" + calendarID + "/events/" 
+					+ eventID + fin + token);
 			cr.setEntityBuffering(true);
 			cr.delete();
 		} catch (ResourceException re) {
@@ -103,21 +100,5 @@ public class EventResource {
 		
 		return success;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

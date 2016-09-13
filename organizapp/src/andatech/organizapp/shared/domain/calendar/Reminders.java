@@ -1,14 +1,21 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Reminders {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Reminders implements Serializable{
 
     private Boolean useDefault;
     private List<Override> overrides = new ArrayList<Override>();

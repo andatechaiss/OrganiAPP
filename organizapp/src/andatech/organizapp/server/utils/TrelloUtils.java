@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import andatech.organizapp.server.LocationCard;
 import andatech.organizapp.server.Project;
 import andatech.organizapp.server.TaskCard;
 import andatech.organizapp.server.resources.trello.TrelloBoardsResource;
@@ -17,6 +18,7 @@ import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
 import andatech.organizapp.shared.resources.TarjetasResource;
+import andatech.organizapp.shared.resources.UbicacionResource;
 
 public class TrelloUtils 
 {
@@ -59,19 +61,30 @@ public class TrelloUtils
 	
 	
 	//Proyectos
-	public static ProyectoResource getProyectoFromBoard(Boards b)
+	public static ProyectoResource getProyectoFromBoard(String token, Boards b)
 	{
+		Map<String, String> conf = getConfig(token, b.getId());
+		
 		ProyectoResource res = new ProyectoResource();
 		res.setId(b.getId());
 		res.setNombre(b.getName().replace(prefixBoard, ""));
 		res.setDescripcion(b.getDesc());
+		res.setCalendario(conf.get("calendario"));
 		return res;
+	}
+	
+	public static Map<String, String> getConfig(String token, String idBoard)
+	{
+		String desc = getCardsFromName(token, getListsFromName(token, idBoard, Project.listConfigs).getId(), Project.cardConfigs).getDesc();
+		Map<String, String> conf = UtilsConfig.mapConfig(desc);
+		
+		return conf;
 	}
 	
 	public static Map<String, String> getConfig(ProyectoResource p)
 	{
 		Map<String, String> res = new HashMap<String, String>();
-		res.put("quitar", p.getQuitar());
+		res.put("calendario", p.getCalendario());
 		
 		return res;
 	}
@@ -160,6 +173,12 @@ public class TrelloUtils
 					return TrelloListsResource.getList(p.getIdList().getListLocation(), token);
 				
 				break;
+				
+			case "date":
+				if(p.getIdList().getListDate() != null)
+					return TrelloListsResource.getList(p.getIdList().getListDate(), token);
+				
+				break;
 		}
 		
 		for(Lists _l : TrelloListsResource.getAllList(p.getId(), token))
@@ -197,6 +216,12 @@ public class TrelloUtils
 			case "location":
 				if(p.getIdList().getListLocation() != null)
 					return p.getIdList().getListLocation();
+				
+				break;
+				
+			case "date":
+				if(p.getIdList().getListDate() != null)
+					return p.getIdList().getListDate();
 				
 				break;
 		}
@@ -254,6 +279,17 @@ public class TrelloUtils
 					break;
 					
 				case "location":
+					switch(res.getCondicion())
+					{
+						case "all":
+							List<TarjetasResource> temp = new LinkedList<TarjetasResource>();
+							for(UbicacionResource t : LocationCard.getAllLocationCard(token, p))
+								temp.add(t);
+							res.setTarjetas(temp);
+							break;
+					}
+					break;
+				case "date":
 					break;//TODO
 			}
 			
@@ -297,6 +333,22 @@ public class TrelloUtils
 			res.setEstado(state);
 		else
 			res.setEstado("unassigned");
+		
+		return res;
+	}
+	
+	
+	//ubicaciones
+	public static UbicacionResource getUbicacionFromCard(Card c)
+	{
+		UbicacionResource res = new UbicacionResource();
+		res.setNombre(c.getName());
+		res.setDescripcion(UtilsConfig.getDescCard(c.getDesc()));
+		
+		Map<String, String> conf = UtilsConfig.mapConfigCard(c.getDesc());
+		res.setId(c.getId());
+		res.setLatitud(new Double(conf.get("latitud")));
+		res.setLongitud(new Double(conf.get("longitud")));
 		
 		return res;
 	}

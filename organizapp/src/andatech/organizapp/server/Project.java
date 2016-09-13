@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import andatech.organizapp.server.resources.calendar.CalendarsResource;
 import andatech.organizapp.server.resources.trello.TrelloBoardsResource;
 import andatech.organizapp.server.resources.trello.TrelloCardsResource;
+import andatech.organizapp.server.utils.CalendarUtils;
 import andatech.organizapp.server.utils.TrelloUtils;
 import andatech.organizapp.server.utils.UtilsConfig;
 import andatech.organizapp.shared.domain.trello.Boards;
@@ -29,14 +31,14 @@ public class Project
 	{
 		List<ProyectoResource> res = new LinkedList<ProyectoResource>();
 		for(Boards b : TrelloUtils.getBoardsPoyectos(trelloToken))
-			res.add(TrelloUtils.getProyectoFromBoard(b));
+			res.add(TrelloUtils.getProyectoFromBoard(trelloToken, b));
 		
 		return res;
 	}
 	
 	public static ProyectoResource getProject(String trelloToken, String id)
 	{
-		return TrelloUtils.getProyectoFromBoard(TrelloBoardsResource.getBoard(id, trelloToken));
+		return TrelloUtils.getProyectoFromBoard(trelloToken, TrelloBoardsResource.getBoard(id, trelloToken));
 	}
 	
 	public static List<Member> getMemberProject(String trelloToken, String id)
@@ -47,12 +49,12 @@ public class Project
 	
 	
 	//POSTs
-	public static ProyectoResource createProject(String trelloToken, String name, String desc)	//proyecto nuevo
+	public static ProyectoResource createProject(String googleToken, String trelloToken, String name, String desc)	//proyecto nuevo
 	{
-		return createProject(trelloToken, null, name, desc);
+		return createProject(googleToken, trelloToken, null, name, desc);
 	}
 	
-	public static ProyectoResource createProject(String trelloToken, String id, String name, String desc)	//proyecto existente
+	public static ProyectoResource createProject(String googleToken, String trelloToken, String id, String name, String desc)	//proyecto existente
 	{
 		//board
 		Prefs prefs = new Prefs();
@@ -71,6 +73,11 @@ public class Project
 		
 		if(id != null)
 		{
+			//eliminamos el calendario asociado
+			String c = TrelloUtils.getConfig(trelloToken, id).get("calendario");
+			if(c != null)
+				CalendarsResource.deleteCalendar(googleToken, c);
+			
 			//limpiamos el proyecto anterior
 			TrelloUtils.clearProyecto(trelloToken, id);
 			
@@ -85,9 +92,13 @@ public class Project
 			TrelloUtils.clearProyecto(trelloToken, board.getId());
 		}
 		
+		//creamos el calendario
+		String cal = CalendarUtils.crearCalendario(googleToken, id, null);
+		
 		
 		//añadimos la configuracion extra de trello
-		ProyectoResource p = TrelloUtils.getProyectoFromBoard(board);
+		ProyectoResource p = TrelloUtils.getProyectoFromBoard(trelloToken, board);
+		p.setCalendario(cal);
 		
 		String idList = TrelloUtils.insertList(trelloToken, board.getId(), listConfigs);
 		
@@ -102,6 +113,7 @@ public class Project
 		//preparamos para las tarjetas
 		p.getIdList().setListTask(TrelloUtils.insertList(trelloToken, board.getId(), "task"));
 		p.getIdList().setListLocation(TrelloUtils.insertList(trelloToken, board.getId(), "location"));
+		p.getIdList().setListLocation(TrelloUtils.insertList(trelloToken, board.getId(), "date"));
 		
 		return p;
 	}

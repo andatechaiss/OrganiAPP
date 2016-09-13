@@ -1,12 +1,19 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@SuppressWarnings("serial")
 @Generated("org.jsonschema2pojo")
-public class Override {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Override implements Serializable{
 
     private String method;
     private Integer minutes;

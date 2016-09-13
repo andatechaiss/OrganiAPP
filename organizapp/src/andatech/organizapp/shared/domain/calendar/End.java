@@ -1,24 +1,29 @@
 
 package andatech.organizapp.shared.domain.calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
-@Generated("org.jsonschema2pojo")
-public class End {
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-    private String dateTime;
+@SuppressWarnings("serial")
+@Generated("org.jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class End implements Serializable{
+
+	private String date;
     private String timeZone;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
      * @return
      *     The dateTime
      */
-    public String getDateTime() {
-        return dateTime;
+    public String getDate() {
+        return date;
     }
 
     /**
@@ -26,8 +31,8 @@ public class End {
      * @param dateTime
      *     The dateTime
      */
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(String dateTime) {
+        this.date = dateTime;
     }
 
     /**
@@ -46,14 +51,6 @@ public class End {
      */
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

@@ -10,6 +10,7 @@ import andatech.organizapp.shared.domain.trello.Member;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
+import andatech.organizapp.shared.resources.UbicacionResource;
 
 @RemoteServiceRelativePath("oa")
 public interface OrganizappRPC extends RemoteService {
@@ -18,8 +19,8 @@ public interface OrganizappRPC extends RemoteService {
 	List<ProyectoResource> getAllProject(String trelloToken);
 	ProyectoResource getProject(String trelloToken, String id);
 	List<Member> getMemberProject(String trelloToken, String id);
-	ProyectoResource createProject(String trelloToken, String name, String desc);
-	ProyectoResource createProject(String trelloToken, String id, String name, String desc);
+	ProyectoResource createProject(String googleToken, String trelloToken, String name, String desc);
+	ProyectoResource createProject(String googleToken, String trelloToken, String id, String name, String desc);
 	void insertMemberProject(String trelloToken, String project, Email m);
 	void insertMemberProject(String trelloToken, String project, List<Email> lm);
 	void updateProject(String trelloToken, ProyectoResource p);
@@ -53,4 +54,14 @@ public interface OrganizappRPC extends RemoteService {
 	void insertMemberTaskCard(String trelloToken, String member, String task);
 	void deleteTaskCard(String trelloToken, String task);
 	void deleteMemberTaskCard(String trelloToken, String member, String task);
+	
+	
+	
+	//LocationCard
+	List<UbicacionResource> getAllLocationCard(String trelloToken, ProyectoResource p);
+	List<UbicacionResource> getNearLocationCard(String trelloToken, ProyectoResource p, double lat, double lon, double dist);
+	String insertLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u);
+	void updateLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u);
+	void deleteLocationCard(String trelloToken, String locate);
+	
 }

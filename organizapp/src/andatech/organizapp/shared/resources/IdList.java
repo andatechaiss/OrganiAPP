@@ -15,6 +15,7 @@ public class IdList implements Serializable
 	
 	private String listTask;
 	private String listLocation;
+	private String listDate;
 	
 	
 	public String getListConfig() {
@@ -40,5 +41,11 @@ public class IdList implements Serializable
 	}
 	public void setListLocation(String listLocation) {
 		this.listLocation = listLocation;
+	}
+	public String getListDate() {
+		return listDate;
+	}
+	public void setListDate(String listDate) {
+		this.listDate = listDate;
 	}
 }
