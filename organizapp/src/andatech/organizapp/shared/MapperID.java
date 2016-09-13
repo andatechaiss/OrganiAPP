@@ -12,7 +12,7 @@ public class MapperID
 	{
 		ObjectMapper mp = new ObjectMapper();
 		ID res = null;
-		String json;
+		String json = null;
 		ClientResource cr = null;
 		
 		try {

@@ -1,33 +1,9 @@
 package andatech.organizapp.client.resources.utils;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.core.client.Callback;
 
-public class CallbackVoid implements AsyncCallback<Void>
+public abstract class CallbackVoid implements Callback<Void, Throwable>
 {
-	private CallbackObject obj;
-	private Object param;
-	
-	
-	public CallbackVoid()
-	{
-		obj = null;
+	public void onFailure(Throwable reason) {
 	}
-	
-	public CallbackVoid(CallbackObject obj, Object param)
-	{
-		this.obj = obj;
-		this.param = param;
-	}
-	
-
-	@Override
-	public void onFailure(Throwable caught) {
-	}
-
-	@Override
-	public void onSuccess(Void result) {
-		if(obj != null)
-			obj.run(param);
-	}
-
 }

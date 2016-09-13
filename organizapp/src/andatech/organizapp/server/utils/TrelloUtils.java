@@ -5,15 +5,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import andatech.organizapp.server.EventCard;
 import andatech.organizapp.server.LocationCard;
 import andatech.organizapp.server.Project;
 import andatech.organizapp.server.TaskCard;
+import andatech.organizapp.server.resources.calendar.EventResource;
 import andatech.organizapp.server.resources.trello.TrelloBoardsResource;
 import andatech.organizapp.server.resources.trello.TrelloCardsResource;
 import andatech.organizapp.server.resources.trello.TrelloListsResource;
+import andatech.organizapp.shared.domain.calendar.CalendarEvent;
 import andatech.organizapp.shared.domain.trello.Boards;
 import andatech.organizapp.shared.domain.trello.Card;
 import andatech.organizapp.shared.domain.trello.Lists;
+import andatech.organizapp.shared.resources.EventoResource;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
@@ -69,16 +73,24 @@ public class TrelloUtils
 		res.setId(b.getId());
 		res.setNombre(b.getName().replace(prefixBoard, ""));
 		res.setDescripcion(b.getDesc());
-		res.setCalendario(conf.get("calendario"));
+		res.setCalendario(conf != null ? conf.get("calendario") : null);
 		return res;
 	}
 	
 	public static Map<String, String> getConfig(String token, String idBoard)
 	{
-		String desc = getCardsFromName(token, getListsFromName(token, idBoard, Project.listConfigs).getId(), Project.cardConfigs).getDesc();
-		Map<String, String> conf = UtilsConfig.mapConfig(desc);
+		Lists l = getListsFromName(token, idBoard, Project.listConfigs);
+		if(l != null && l.getId() != null)
+		{
+			Card c = getCardsFromName(token, l.getId(), Project.cardConfigs);
+			if(c != null)
+			{
+				Map<String, String> conf = UtilsConfig.mapConfig(c.getDesc());
+				return conf;
+			}
+		}
 		
-		return conf;
+		return null;
 	}
 	
 	public static Map<String, String> getConfig(ProyectoResource p)
@@ -236,7 +248,7 @@ public class TrelloUtils
 	
 	
 	//listas virtuales
-	public static ListaTarjetasResource getListaTarjetasResource(String token, ProyectoResource p, Card c)
+	public static ListaTarjetasResource getListaTarjetasResource(String google, String token, ProyectoResource p, Card c)
 	{
 		Map<String, String> config = UtilsConfig.mapConfig(c.getDesc());
 		
@@ -290,7 +302,11 @@ public class TrelloUtils
 					}
 					break;
 				case "date":
-					break;//TODO
+					List<TarjetasResource> temp = new LinkedList<TarjetasResource>();
+					for(EventoResource t : EventCard.getAllEvents(google, token, p))
+						temp.add(t);
+					res.setTarjetas(temp);
+					break;
 			}
 			
 			return res;
@@ -349,6 +365,37 @@ public class TrelloUtils
 		res.setId(c.getId());
 		res.setLatitud(new Double(conf.get("latitud")));
 		res.setLongitud(new Double(conf.get("longitud")));
+		
+		return res;
+	}
+	
+	
+	//eventos
+	public static EventoResource getEventoFromCard(String token, Card c, String calendar)
+	{
+		EventoResource res = new EventoResource();
+		res.setNombre(c.getName());
+		res.setDescripcion(UtilsConfig.getDescCard(c.getDesc()));
+		
+		Map<String, String> conf = UtilsConfig.mapConfigCard(c.getDesc());
+		res.setId(c.getId());
+		res.setIdCalendar(conf.get("idCalendar"));
+		
+		//buscamos en la api de calendar
+		CalendarEvent e = EventResource.getEvent(token, calendar, res.getIdCalendar());
+		String date = e.getStart().getDate();
+		String []arr = date.split("-");
+		
+		res.setStartDia(arr[2]);
+		res.setStartMes(arr[1]);
+		res.setStartAnio(arr[0]);
+		
+		date = e.getEnd().getDate();
+		arr = date.split("-");
+		
+		res.setEndDia(arr[2]);
+		res.setEndMes(arr[1]);
+		res.setEndAnio(arr[0]);
 		
 		return res;
 	}

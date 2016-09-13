@@ -18,13 +18,13 @@ public class ListCard
 	
 	
 	//GETs
-	public static List<ListaTarjetasResource> getAllListCard(String trelloToken, ProyectoResource p)
+	public static List<ListaTarjetasResource> getAllListCard(String googleToken, String trelloToken, ProyectoResource p)
 	{
 		String idList = TrelloUtils.getListsFromName(trelloToken, p, Project.listConfigs).getId();
 		
 		List<ListaTarjetasResource> res = new LinkedList<ListaTarjetasResource>();
 		for(Card c : TrelloUtils.getAllCardsFromName(trelloToken, idList, cardsList))
-			res.add(TrelloUtils.getListaTarjetasResource(trelloToken, p, c));
+			res.add(TrelloUtils.getListaTarjetasResource(googleToken, trelloToken, p, c));
 		
 		return res;
 	}

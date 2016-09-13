@@ -11,12 +11,15 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 
+import andatech.organizapp.client.resources.utils.CallbackVoid;
 import andatech.organizapp.client.rpc.OrganizappRPC;
 import andatech.organizapp.client.rpc.OrganizappRPCAsync;
 import andatech.organizapp.client.rpc.TrelloRPC;
 import andatech.organizapp.client.rpc.TrelloRPCAsync;
 import andatech.organizapp.shared.domain.trello.Boards;
+import andatech.organizapp.shared.resources.EventoResource;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
@@ -66,17 +69,29 @@ public class Organizapp implements EntryPoint {
 		
 		final OrganizappRPCAsync rpc = GWT.create(OrganizappRPC.class);
 		final TrelloRPCAsync trello = GWT.create(TrelloRPC.class);
+		Widget w = new Widget();
 		Button bt = new Button("Autentificar");
 		bt.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Autenticacion.authorizeTrello();
-				Autenticacion.authorizeGoogle();
-				rpc.getProject(Autenticacion.trelloToken(), "57445c301290fa15552b5962", new AsyncCallback<ProyectoResource>(){
-					public void onFailure(Throwable caught) {
-					}
-					public void onSuccess(ProyectoResource result) {
-						p.setId(result.getId());
-						Window.alert("yaa");
+				Autenticacion.authorizeGoogle(new CallbackVoid()
+				{
+					public void onSuccess(Void result) {
+//						Window.alert(Autenticacion.trelloToken());
+//						Window.alert(Autenticacion.googleToken());
+						
+						rpc.getProject(Autenticacion.trelloToken(), "57445c301290fa15552b5962", new AsyncCallback<ProyectoResource>(){
+							public void onFailure(Throwable caught) {
+							}
+							public void onSuccess(ProyectoResource result) {
+								p.setId(result.getId());
+								p.setCalendario(result.getCalendario());
+								p.setDescripcion(result.getDescripcion());
+								p.setIdList(result.getIdList());
+								p.setNombre(result.getNombre());
+								Window.alert("yaa");
+							}
+						});
 					}
 				});
 			}
@@ -154,11 +169,27 @@ public class Organizapp implements EntryPoint {
 //					}
 //					
 //				});
-				rpc.getAllListCard(Autenticacion.trelloToken(), p, new AsyncCallback<List<ListaTarjetasResource>>(){
+//				rpc.getAllListCard(Autenticacion.trelloToken(), p, new AsyncCallback<List<ListaTarjetasResource>>(){
+//					public void onFailure(Throwable caught) {}
+//					public void onSuccess(List<ListaTarjetasResource> result) {
+//						for(ListaTarjetasResource l : result)
+//							Window.alert(l.toString());
+//					}
+//					
+//				});
+				EventoResource e = new EventoResource();
+				e.setNombre("un evento");
+				e.setDescripcion("desc");
+				e.setStartDia("1");
+				e.setStartMes("1");
+				e.setStartAnio("2017");
+				e.setEndDia("1");
+				e.setEndMes("1");
+				e.setEndAnio("2017");
+				rpc.insertEvent(Autenticacion.googleToken(), Autenticacion.trelloToken(), p, e, new AsyncCallback<String>(){
 					public void onFailure(Throwable caught) {}
-					public void onSuccess(List<ListaTarjetasResource> result) {
-						for(ListaTarjetasResource l : result)
-							Window.alert(l.toString());
+					public void onSuccess(String result) {
+						Window.alert(result);
 					}
 					
 				});
@@ -172,6 +203,11 @@ public class Organizapp implements EntryPoint {
 					public void onFailure(Throwable caught) {
 					}
 					public void onSuccess(ProyectoResource result) {
+						p.setId(result.getId());
+						p.setCalendario(result.getCalendario());
+						p.setDescripcion(result.getDescripcion());
+						p.setIdList(result.getIdList());
+						p.setNombre(result.getNombre());
 						Window.alert(result.toString());
 					}
 				});
@@ -181,12 +217,6 @@ public class Organizapp implements EntryPoint {
 		Button btt5 = new Button("update");
 		btt5.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				rpc.updateProject(Autenticacion.trelloToken(), "57445c301290fa15552b5962", "quitar", "ttttttttt", new AsyncCallback<Void>(){
-					public void onFailure(Throwable caught) {
-					}
-					public void onSuccess(Void result) {
-					}
-				});
 			}
 		});
 		

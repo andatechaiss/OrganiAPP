@@ -19,6 +19,7 @@ public class ProyectoResource implements Serializable
 	private String calendario;
 
 	private List<ListaTarjetasResource> listaTarjetas = new ArrayList<ListaTarjetasResource>();
+
 	private IdList idList = new IdList();
 
 	
@@ -62,6 +63,14 @@ public class ProyectoResource implements Serializable
 
 	public void setCalendario(String calendario) {
 		this.calendario = calendario;
+	}
+	
+	public List<ListaTarjetasResource> getListaTarjetas() {
+		return listaTarjetas;
+	}
+
+	public void setListaTarjetas(List<ListaTarjetasResource> listaTarjetas) {
+		this.listaTarjetas = listaTarjetas;
 	}
 	
 	

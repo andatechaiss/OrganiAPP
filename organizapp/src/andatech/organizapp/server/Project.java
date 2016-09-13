@@ -74,7 +74,8 @@ public class Project
 		if(id != null)
 		{
 			//eliminamos el calendario asociado
-			String c = TrelloUtils.getConfig(trelloToken, id).get("calendario");
+			Map<String, String> conf = TrelloUtils.getConfig(trelloToken, id);
+			String c = conf != null ? conf.get("calendario") : null;
 			if(c != null)
 				CalendarsResource.deleteCalendar(googleToken, c);
 			

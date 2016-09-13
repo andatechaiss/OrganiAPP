@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.Member;
+import andatech.organizapp.shared.resources.EventoResource;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
@@ -32,7 +33,7 @@ public interface OrganizappRPC extends RemoteService {
 	
 	
 	//ListCard
-	List<ListaTarjetasResource> getAllListCard(String trelloToken, ProyectoResource p);
+	List<ListaTarjetasResource> getAllListCard(String googleToken, String trelloToken, ProyectoResource p);
 	String insertListCard(String trelloToken, ProyectoResource p, ListaTarjetasResource l);
 	void updateListCard(String trelloToken, ProyectoResource p, ListaTarjetasResource l);
 	void deleteListCard(String trelloToken, String id);
@@ -63,5 +64,15 @@ public interface OrganizappRPC extends RemoteService {
 	String insertLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u);
 	void updateLocationCard(String trelloToken, ProyectoResource p, UbicacionResource u);
 	void deleteLocationCard(String trelloToken, String locate);
+	
+	
+	
+	//EventCard
+	List<EventoResource> getAllEvents(String googleToken, String trelloToken, ProyectoResource p);
+	EventoResource getEvent(String googleToken, String trelloToken, String idEvent, ProyectoResource p);
+	String insertEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e);
+	void updateEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e);
+	void deleteEventCard(String googleToken, String trelloToken, String idCalendar, EventoResource e);
+	
 	
 }

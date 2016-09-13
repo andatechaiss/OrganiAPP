@@ -2,8 +2,7 @@
 package andatech.organizapp.shared.domain.calendar;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.annotation.Generated;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -20,7 +19,6 @@ public class Calendars implements Serializable{
     private String id;
     private String summary;
     private String timeZone;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -110,14 +108,6 @@ public class Calendars implements Serializable{
      */
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

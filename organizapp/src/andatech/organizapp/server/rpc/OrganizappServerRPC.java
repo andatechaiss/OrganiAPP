@@ -5,12 +5,14 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import andatech.organizapp.client.rpc.OrganizappRPC;
+import andatech.organizapp.server.EventCard;
 import andatech.organizapp.server.ListCard;
 import andatech.organizapp.server.LocationCard;
 import andatech.organizapp.server.Project;
 import andatech.organizapp.server.TaskCard;
 import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.Member;
+import andatech.organizapp.shared.resources.EventoResource;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
@@ -155,8 +157,8 @@ public class OrganizappServerRPC  extends RemoteServiceServlet implements Organi
 	}
 
 	@Override
-	public List<ListaTarjetasResource> getAllListCard(String trelloToken, ProyectoResource p) {
-		return ListCard.getAllListCard(trelloToken, p);
+	public List<ListaTarjetasResource> getAllListCard(String googleToken, String trelloToken, ProyectoResource p) {
+		return ListCard.getAllListCard(googleToken, trelloToken, p);
 	}
 
 	@Override
@@ -198,6 +200,31 @@ public class OrganizappServerRPC  extends RemoteServiceServlet implements Organi
 	@Override
 	public void deleteLocationCard(String trelloToken, String locate) {
 		LocationCard.deleteLocationCard(trelloToken, locate);
+	}
+
+	@Override
+	public List<EventoResource> getAllEvents(String googleToken, String trelloToken, ProyectoResource p) {
+		return EventCard.getAllEvents(googleToken, trelloToken, p);
+	}
+
+	@Override
+	public EventoResource getEvent(String googleToken, String trelloToken, String idEvent, ProyectoResource p) {
+		return EventCard.getEvent(googleToken, trelloToken, idEvent, p);
+	}
+
+	@Override
+	public String insertEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e) {
+		return EventCard.insertEvent(googleToken, trelloToken, p, e);
+	}
+
+	@Override
+	public void updateEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e) {
+		EventCard.updateEvent(googleToken, trelloToken, p, e);
+	}
+
+	@Override
+	public void deleteEventCard(String googleToken, String trelloToken, String idCalendar, EventoResource e) {
+		EventCard.deleteEventCard(googleToken, trelloToken, idCalendar, e);
 	}
 
 }

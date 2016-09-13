@@ -55,7 +55,7 @@ public class CalendarsResource {
 	//Crea un calendario secundario
 	public static String addCalendar(String token, Calendars calendar){
 		
-		return MapperID.getID(uri + "/calendars/" + fin + token, calendar);
+		return MapperID.getID(uri + "/calendars" + fin + token, calendar);
 	}
 	
 	//Actualiza un calendario

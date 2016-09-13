@@ -6,6 +6,7 @@ import com.google.gwt.core.client.Callback;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 
+import andatech.organizapp.client.resources.utils.CallbackVoid;
 import andatech.organizapp.shared.GoogleCommon;
 
 public class Autenticacion 
@@ -13,7 +14,7 @@ public class Autenticacion
 	private static String google_token = null;
 	
 	
-	public static void authorizeGoogle()
+	public static void authorizeGoogle(final CallbackVoid call)
 	{
 		AuthRequest google = new AuthRequest(GoogleCommon.AUTH_URL, GoogleCommon.CLIENT_ID)
 								.withScopes(GoogleCommon.SCOPES);
@@ -27,6 +28,7 @@ public class Autenticacion
 			@Override
 			public void onSuccess(String result) {
 				google_token = result;
+				call.onSuccess(null);
 			}
 		});
 	}

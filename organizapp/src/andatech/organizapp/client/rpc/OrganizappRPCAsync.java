@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import andatech.organizapp.shared.domain.trello.Email;
 import andatech.organizapp.shared.domain.trello.Member;
+import andatech.organizapp.shared.resources.EventoResource;
 import andatech.organizapp.shared.resources.ListaTarjetasResource;
 import andatech.organizapp.shared.resources.ProyectoResource;
 import andatech.organizapp.shared.resources.TareaResource;
@@ -70,7 +71,8 @@ public interface OrganizappRPCAsync {
 
 	void deleteMemberTaskCard(String trelloToken, String member, String task, AsyncCallback<Void> callback);
 
-	void getAllListCard(String trelloToken, ProyectoResource p, AsyncCallback<List<ListaTarjetasResource>> callback);
+	void getAllListCard(String googleToken, String trelloToken, ProyectoResource p,
+			AsyncCallback<List<ListaTarjetasResource>> callback);
 
 	void insertListCard(String trelloToken, ProyectoResource p, ListaTarjetasResource l,
 			AsyncCallback<String> callback);
@@ -90,5 +92,20 @@ public interface OrganizappRPCAsync {
 			AsyncCallback<String> callback);
 
 	void deleteLocationCard(String trelloToken, String locate, AsyncCallback<Void> callback);
+
+	void getAllEvents(String googleToken, String trelloToken, ProyectoResource p,
+			AsyncCallback<List<EventoResource>> callback);
+
+	void getEvent(String googleToken, String trelloToken, String idEvent, ProyectoResource p,
+			AsyncCallback<EventoResource> callback);
+
+	void insertEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e,
+			AsyncCallback<String> callback);
+
+	void updateEvent(String googleToken, String trelloToken, ProyectoResource p, EventoResource e,
+			AsyncCallback<Void> callback);
+
+	void deleteEventCard(String googleToken, String trelloToken, String idCalendar, EventoResource e,
+			AsyncCallback<Void> callback);
 
 }
