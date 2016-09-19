@@ -22,8 +22,14 @@ public class ProyectoResource implements Serializable
 
 	private IdList idList = new IdList();
 
-	
-	
+	public ProyectoResource() {}
+	public ProyectoResource(String id, String nombre, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
+
 	//acceso
 	public String getId() {
 		return id;

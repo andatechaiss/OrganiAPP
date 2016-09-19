@@ -36,7 +36,7 @@ public class TrelloUtils
 	{
 		List<Boards> res = new LinkedList<Boards>();
 		for(Boards b : TrelloBoardsResource.getAllBoards(token))
-			if(b.getName().startsWith(prefixBoard))
+			if(b.getName().startsWith(prefixBoard) && !b.getClosed())
 				res.add(b);
 		
 		return res;
@@ -383,19 +383,22 @@ public class TrelloUtils
 		
 		//buscamos en la api de calendar
 		CalendarEvent e = EventResource.getEvent(token, calendar, res.getIdCalendar());
-		String date = e.getStart().getDate();
-		String []arr = date.split("-");
-		
-		res.setStartDia(arr[2]);
-		res.setStartMes(arr[1]);
-		res.setStartAnio(arr[0]);
-		
-		date = e.getEnd().getDate();
-		arr = date.split("-");
-		
-		res.setEndDia(arr[2]);
-		res.setEndMes(arr[1]);
-		res.setEndAnio(arr[0]);
+		if(e != null)
+		{
+			String date = e.getStart().getDate();
+			String []arr = date.split("-");
+			
+			res.setStartDia(arr[2]);
+			res.setStartMes(arr[1]);
+			res.setStartAnio(arr[0]);
+			
+			date = e.getEnd().getDate();
+			arr = date.split("-");
+			
+			res.setEndDia(arr[2]);
+			res.setEndMes(arr[1]);
+			res.setEndAnio(arr[0]);
+		}
 		
 		return res;
 	}

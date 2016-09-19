@@ -12,6 +12,10 @@ public class ID implements Serializable
 	private static final long serialVersionUID = -1001244271423784417L;
 	private String id;
 
+	public ID(String insertLocationCard) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getId() {
 		return id;
 	}

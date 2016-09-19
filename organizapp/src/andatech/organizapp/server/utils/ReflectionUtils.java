@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 public class ReflectionUtils 
 {
-	public static boolean setField(Class<?> clazz, Object obj, String field, Object value)	//TODO test
+	public static boolean setField(Class<?> clazz, Object obj, String field, Object value)
 	{
 		try
 		{
